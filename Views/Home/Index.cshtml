@@ -1,5 +1,8 @@
-﻿
+﻿@using Learn_web.Controllers
+
 @model IEnumerable<Order>
+
+
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,20 +11,57 @@
 <h1 class="text-center" id="operationTitle">Операции</h1>
 
 <div>
-    <a asp-controller="home" asp-action="Create">Создать запись</a>
+    <p>
+        Погода <a href="https://yandex.ru/pogoda/yekaterinburg?via=hl"> Яндекс погода</a>
+    </p>
+    <p>@ViewBag.temperature </p>
 </div>
 
 <div>
-    @foreach (var item in Model)
-    {
-        <div>
-            @item.dateOrder Дата операции
-        </div>
-        <div>
-            @item.clientData Даные клиента
-        </div>
-    }
+    <a asp-controller="home" asp-action="Create">Создать запись</a>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.id)</th>
+            <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
+            <th>@Html.DisplayNameFor(i => i.clientData)</th>
+            <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
+            <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
+            <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
+            <th>@Html.DisplayNameFor(i => i.Translator)</th>
+            <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<th scope="row">1</th>*@
+                <td>@item.id</td>
+                <td>@item.dateOrder</td>
+                <td>@item.clientData</td>
+                <td>@item.originalLanguage</td>
+                <td>@item.translateLanguage</td>
+                <td>@item.costOfWork</td>
+                <td>@item.Translator</td>
+                <td>@item.costOfTranslationServices</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div class="container">
+    <!-- Content here -->
+    <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p> 
+</div>
+
+
+
+
+
 
 
 

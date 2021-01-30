@@ -10,6 +10,7 @@ using Learn_web.Repository;
 using Learn_web.DataBase;
 using Learn_web.Interfaces;
 using Learn_web.Models;
+using Newtonsoft.Json;
 
 namespace Learn_web.Controllers
 {
@@ -18,6 +19,8 @@ namespace Learn_web.Controllers
         private readonly ILogger<HomeController> _logger;
         
         IOrders Orders;
+
+        public string testWeather;
 
         //Контроллер принимающий данные из контекста
         public HomeController(ILogger<HomeController> logger, IOrders orders)
@@ -30,6 +33,14 @@ namespace Learn_web.Controllers
         public IActionResult Index()
         {
            var model = Orders.get();
+
+            
+            testWeather = GetWeather();
+
+            ViewBag.temperature = testWeather;
+
+            var sum = Orders.get().Sum(i => i.costOfWork);
+            ViewBag.sum = sum;
 
             return View(model);
         }
@@ -60,7 +71,20 @@ namespace Learn_web.Controllers
             return View();
         }
 
-        
+
+        public string GetWeather()
+        {
+            Weather weather = new Weather();
+
+            string respone = weather.TestWeather();
+
+            WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
+
+            return $"Погода в {weatherResponse.Name} состовляет {weatherResponse.Main.Temp} градусов цельсия";
+
+
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
