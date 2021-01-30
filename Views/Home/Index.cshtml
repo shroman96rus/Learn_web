@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="text-center" id="operationTitle">Операции</h1>
+
+<div>
+    <a asp-controller="home" asp-action="Create">Создать запись</a>
+</div>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            @item.dateOrder Дата операции
+        </div>
+        <div>
+            @item.clientData Даные клиента
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+﻿@model Learn_web.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Создание новой записи</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="dateOrder" class=""></label>
+                <input asp-for="dateOrder" class="form-control" />
+                <span asp-validation-for="dateOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clientData" class="control-label"></label>
+                <input asp-for="clientData" class="form-control" />
+                <span asp-validation-for="clientData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="originalLanguage" class="control-label"></label>
+                <input asp-for="originalLanguage" class="form-control" />
+                <span asp-validation-for="originalLanguage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="translateLanguage" class="control-label"></label>
+                <input asp-for="translateLanguage" class="form-control" />
+                <span asp-validation-for="translateLanguage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="costOfWork" class="control-label"></label>
+                <input asp-for="costOfWork" class="form-control" />
+                <span asp-validation-for="costOfWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="costOfTranslationServices" class="control-label"></label>
+                <input asp-for="costOfTranslationServices" class="form-control" />
+                <span asp-validation-for="costOfTranslationServices" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Translator" class="control-label"></label>
+                <input asp-for="Translator" class="form-control" />
+                <span asp-validation-for="Translator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться на главную страницу</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
