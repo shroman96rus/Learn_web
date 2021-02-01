@@ -21,7 +21,7 @@
     <a asp-controller="home" asp-action="Create">Создать запись</a>
 </div>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.id)</th>
@@ -38,15 +38,54 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<th scope="row">1</th>*@
-                <td>@item.id</td>
+                <th scope="row">@item.id</th>
+                @*<td>@item.id</td>*@
                 <td>@item.dateOrder</td>
                 <td>@item.clientData</td>
                 <td>@item.originalLanguage</td>
                 <td>@item.translateLanguage</td>
-                <td>@item.costOfWork</td>
+                <td>@item.costOfWork @if (item.costOfWork != null) {<span>руб</span>}</td>
                 <td>@item.Translator</td>
-                <td>@item.costOfTranslationServices</td>
+                <td>@item.costOfTranslationServices @if (item.costOfTranslationServices != null ) { <span>руб</span> } </td>
+
+                <td>
+                    @*<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">Детально</button>
+            <a href="Update" class="btn btn-secondary">Изменить</a>
+            <button type="button" class="btn btn-secondary">Удалить</button>
+        </div>*@
+                    <span class="buttons">
+                        <a asp-controller="home" asp-action="Update" asp-route-id="@item.id">Edit</a>
+                    </span>
+                    @*<span class="buttons">
+            <a asp-controller="home" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+        </span>*@
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                        Удалить
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Вы действительно ходите удалить эту запись
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">
+                                        Save changes
+                                        
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         }
 
