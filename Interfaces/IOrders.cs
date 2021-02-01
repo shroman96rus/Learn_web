@@ -16,6 +16,6 @@ namespace Learn_web.Interfaces
 
         void UpdateOrder(Order order);
 
-        Order deleteOrder(int ID);
+        void deleteOrder(int ID);
     }
 }

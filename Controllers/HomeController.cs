@@ -39,7 +39,7 @@ namespace Learn_web.Controllers
 
             ViewBag.temperature = testWeather;
 
-            var sum = Orders.get().Sum(i => i.costOfWork);
+            var sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
             ViewBag.sum = sum;
 
             return View(model);
@@ -65,6 +65,30 @@ namespace Learn_web.Controllers
                 return View(order);
             }
         }
+
+        [HttpPost]
+        public IActionResult Update(Order currentOrder)
+        {
+
+            Orders.UpdateOrder(currentOrder);
+
+            return RedirectToAction("Index");
+            
+        }
+
+        public IActionResult Update(int id)
+        {
+            
+            return View();
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Orders.deleteOrder(id);
+            return RedirectToAction("Index");
+        }
+
+
 
         public IActionResult Privacy()
         {

@@ -1,6 +1,7 @@
 ﻿using Learn_web.DataBase;
 using Learn_web.Interfaces;
 using Learn_web.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,12 @@ namespace Learn_web.Repository
             context.SaveChanges();
         }
 
-        public Order deleteOrder(int ID)
+        public void deleteOrder(int ID)
         {
-            throw new NotImplementedException();
+            Order findOder = getOrder(ID);
+            context.Orders.Remove(findOder);
+            context.SaveChanges();
+            //return findOder;
         }
 
         
@@ -36,14 +40,20 @@ namespace Learn_web.Repository
             return context.Orders;
         }
 
-        public Order getOrder(int ID)
+        public Order getOrder(int id)
         {
-            throw new NotImplementedException();
+           
+            return context.Orders.Find(id);
         }
 
-        public void UpdateOrder(Order order)
+        public void UpdateOrder(Order updateOrder)
         {
-            throw new NotImplementedException();
+            
+           
+
+            context.Attach(updateOrder).State = EntityState.Modified;
+            context.SaveChanges();
+            
         }
     }
 }
