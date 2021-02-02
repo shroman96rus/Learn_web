@@ -44,26 +44,22 @@
                 <td>@item.clientData</td>
                 <td>@item.originalLanguage</td>
                 <td>@item.translateLanguage</td>
-                <td>@item.costOfWork @if (item.costOfWork != null) {<span>руб</span>}</td>
+                <td>
+                    @item.costOfWork @if (item.costOfWork != null)
+                {<span>руб</span>}
+                </td>
                 <td>@item.Translator</td>
-                <td>@item.costOfTranslationServices @if (item.costOfTranslationServices != null ) { <span>руб</span> } </td>
+                <td>
+                    @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
+                {<span>руб</span>}
+                </td>
 
                 <td>
-                    @*<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary">Детально</button>
-            <a href="Update" class="btn btn-secondary">Изменить</a>
-            <button type="button" class="btn btn-secondary">Удалить</button>
-        </div>*@
-                    <span class="buttons">
-                        <a asp-controller="home" asp-action="Update" asp-route-id="@item.id">Edit</a>
-                    </span>
-                    @*<span class="buttons">
-            <a asp-controller="home" asp-action="Delete" asp-route-id="@item.id">Delete</a>
-        </span>*@
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                        Удалить
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Update", "Home", new { id= item.id})'">Обновить</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
+                    </div>
+                    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -77,9 +73,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">
-                                        Save changes
-                                        
+                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id= item.id})'">
+                                        Удалить
                                     </button>
                                 </div>
                             </div>
@@ -92,14 +87,21 @@
     </tbody>
 </table>
 
+
 <div class="container">
-    <!-- Content here -->
-    <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p> 
+
+    <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p>
 </div>
 
 
 
 
+@*<span class="buttons">
+    <a asp-controller="home" asp-action="Update" asp-route-id="@item.id">Edit</a>
+</span>
+<span class="buttons">
+    <a asp-controller="home" asp-action="Delete" asp-route-id="@item.id" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+</span>*@
 
 
 
