@@ -76,10 +76,10 @@ namespace Learn_web.Controllers
             
         }
 
-        public IActionResult Update(int id)
+        public IActionResult Update(int id, Order order)
         {
-            
-            return View();
+            order = Orders.getOrder(id);
+            return View(order);
         }
 
         public IActionResult Delete(int id)
