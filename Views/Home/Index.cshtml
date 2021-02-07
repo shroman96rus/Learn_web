@@ -5,21 +5,25 @@
 
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Учет и контроль доходов";
 }
 
-<h1 class="text-center" id="operationTitle">Операции</h1>
+<head>
+    <link rel="stylesheet" href="/css/Index.css" />
+
+</head>
+
+<h2 class="text-center">Список заказов</h2>
 
 <div>
-    <p>
-        Погода <a href="https://yandex.ru/pogoda/yekaterinburg?via=hl"> Яндекс погода</a>
-    </p>
-    <p>@ViewBag.temperature </p>
+    <p class="card-text">@ViewBag.temperature</p>
 </div>
 
 <div>
     <a asp-controller="home" asp-action="Create">Создать запись</a>
 </div>
+
+
 
 <table class="table table-hover">
     <thead>
@@ -33,31 +37,31 @@
             <th>@Html.DisplayNameFor(i => i.Translator)</th>
             <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
         </tr>
+        
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <th scope="row">@item.id</th>
-                @*<td>@item.id</td>*@
-                <td>@item.dateOrder</td>
+                <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
                 <td>@item.clientData</td>
                 <td>@item.originalLanguage</td>
                 <td>@item.translateLanguage</td>
                 <td>
                     @item.costOfWork @if (item.costOfWork != null)
-                {<span>руб</span>}
+                    {<span>руб</span>}
                 </td>
                 <td>@item.Translator</td>
                 <td>
                     @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
-                {<span>руб</span>}
+                    {<span>руб</span>}
                 </td>
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Update", "Home", new { id= item.id})'">Обновить</button>
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
+                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id= item.id})'">Обновить</button>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
                     </div>
                     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -88,7 +92,7 @@
 </table>
 
 
-<div class="container">
+<div id="Sum">
 
     <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p>
 </div>
@@ -96,12 +100,7 @@
 
 
 
-@*<span class="buttons">
-    <a asp-controller="home" asp-action="Update" asp-route-id="@item.id">Edit</a>
-</span>
-<span class="buttons">
-    <a asp-controller="home" asp-action="Delete" asp-route-id="@item.id" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-</span>*@
+
 
 
 
