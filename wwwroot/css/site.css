@@ -8,7 +8,10 @@ a.navbar-brand {
 }
 
 .navbar-brand {
-    font-family: 'Poiret One'
+    font-family: 'Poiret One';
+    font-size: 21pt;
+    font-weight: 700;
+    
 }
 /* Provide sufficient contrast against white background */
 a {

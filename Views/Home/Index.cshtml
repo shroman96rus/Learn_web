@@ -28,7 +28,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.id)</th>
             <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
             <th>@Html.DisplayNameFor(i => i.clientData)</th>
             <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
@@ -43,7 +42,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <th scope="row">@item.id</th>
                 <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
                 <td>@item.clientData</td>
                 <td>@item.originalLanguage</td>
@@ -60,28 +58,19 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#Detail">Детально</button>
                         <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id= item.id})'">Обновить</button>
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
+
                     </div>
                     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Вы действительно ходите удалить эту запись
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id= item.id})'">
-                                        Удалить
-                                    </button>
-                                </div>
-                            </div>
+                            @await Html.PartialAsync("_Delete", item);
+                        </div>
+                    </div>
+                    <div class="modal fade" id="Detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            @await Html.PartialAsync("_Detail", item);
                         </div>
                     </div>
                 </td>
@@ -92,10 +81,11 @@
 </table>
 
 
-<div id="Sum">
+<div>
 
     <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p>
 </div>
+
 
 
 
