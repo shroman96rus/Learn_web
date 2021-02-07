@@ -20,8 +20,6 @@ namespace Learn_web.Controllers
         
         IOrders Orders;
 
-        public string testWeather;
-
         //Контроллер принимающий данные из контекста
         public HomeController(ILogger<HomeController> logger, IOrders orders)
         {
@@ -34,16 +32,16 @@ namespace Learn_web.Controllers
         {
            var model = Orders.get();
 
-            
-            testWeather = GetWeather();
-
-            ViewBag.temperature = testWeather;
+            ViewBag.temperature = GetWeather();
 
             var sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
             ViewBag.sum = sum;
 
             return View(model);
         }
+
+        
+       
 
         public ActionResult Create()
         {
@@ -56,6 +54,7 @@ namespace Learn_web.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 Orders.CreateOrder(order);
 
                 return RedirectToAction("Index");
@@ -88,8 +87,7 @@ namespace Learn_web.Controllers
             return RedirectToAction("Index");
         }
 
-
-
+       
         public IActionResult Privacy()
         {
             return View();
