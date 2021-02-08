@@ -11,6 +11,12 @@ a.navbar-brand {
     font-family: 'Poiret One';
     font-size: 32px;
 }
+
+.svg-nav-bar {
+    fill: #24f03f;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;

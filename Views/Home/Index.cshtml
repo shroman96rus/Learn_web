@@ -1,4 +1,5 @@
 ﻿@using Learn_web.Controllers
+@using Learn_web.Models
 
 @model IEnumerable<Order>
 
@@ -9,7 +10,8 @@
 }
 
 <head>
-    <link rel="stylesheet" href="/css/Index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
 
 </head>
 
@@ -128,6 +130,15 @@
                 </div>
             </div>
         </div>
+
+<div>
+    <p>Выберите периода за который необходимо преставить информацию</p>
+    <form asp-controller="home" asp-action="PeriodSelection" method="post">
+        <input type="text" name="firstDate" value="" />
+        <input type="text" name="secondDate" value="" />
+        <input type="submit"  value="Сформировать отчет" />
+    </form>
+</div>
 
 
 
