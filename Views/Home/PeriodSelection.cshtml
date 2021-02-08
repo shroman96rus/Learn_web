@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Выбор периода";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">Список заказов за выбранный период</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
+            <th>@Html.DisplayNameFor(i => i.clientData)</th>
+            <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
+            <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
+            <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
+            <th>@Html.DisplayNameFor(i => i.Translator)</th>
+            <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
+                <td>@item.clientData</td>
+                <td>@item.originalLanguage</td>
+                <td>@item.translateLanguage</td>
+                <td>
+                    @item.costOfWork <span>руб</span>
+                </td>
+                <td>@item.Translator</td>
+                <td>
+                    @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
+                    {<span>руб</span>}
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div>
+    <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться на главную страницу</a>
+</div>

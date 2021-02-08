@@ -1,4 +1,5 @@
 ﻿@using Learn_web.Controllers
+@using Learn_web.Models
 
 @model IEnumerable<Order>
 
@@ -9,17 +10,24 @@
 }
 
 <head>
-    <link rel="stylesheet" href="/css/Index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
 
 </head>
 
-<h2 class="text-center">Список заказов</h2>
+<h3 class="text-center">Список заказов</h3>
 
-<div>
-    <p class="card-text">@ViewBag.temperature</p>
+
+<div style="margin-bottom: 20px">
+            <p style="margin:1px 1px 1px 1px">Погода в городе @ViewBag.temperature.Name</p>
+            <p style="margin:1px 1px 1px 1px">Температура на данный момент: @ViewBag.temperature.Main.Temp гр</p>
+            <p style="margin:1px 1px 1px 1px">Ощущается как: @ViewBag.temperature.Main.feels_like гр</p>
+            <p style="margin:1px 1px 1px 1px">Минимальная температура: @ViewBag.temperature.Main.Temp_min гр</p>
+            <p style="margin:1px 1px 1px 1px">Максимальная температура: @ViewBag.temperature.Main.Temp_max гр</p>
 </div>
 
 <div>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Home")'">Создать запись</button>
     <a asp-controller="home" asp-action="Create">Создать запись</a>
 </div>
 
@@ -47,8 +55,7 @@
                 <td>@item.originalLanguage</td>
                 <td>@item.translateLanguage</td>
                 <td>
-                    @item.costOfWork @if (item.costOfWork != null)
-                    {<span>руб</span>}
+                    @item.costOfWork <span>руб</span>
                 </td>
                 <td>@item.Translator</td>
                 <td>
@@ -84,6 +91,15 @@
 <div>
 
     <p>Сумма заработанная на данный момент: @ViewBag.sum рублей</p>
+</div>
+
+<div>
+    <p>Выберите периода за который необходимо преставить информацию</p>
+    <form asp-controller="home" asp-action="PeriodSelection" method="post">
+        <input type="text" name="firstDate" value="" />
+        <input type="text" name="secondDate" value="" />
+        <input type="submit"  value="Сформировать отчет" />
+    </form>
 </div>
 
 

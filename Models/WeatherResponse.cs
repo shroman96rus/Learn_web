@@ -15,6 +15,11 @@ namespace Learn_web.Models
     public class GetTemperature
     {
         public float Temp { get; set; }
+        public float feels_like { get; set; }
+        public float Temp_min { get; set; }
+        public float Temp_max { get; set; }
     }
+
+    
 
 }

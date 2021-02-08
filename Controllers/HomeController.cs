@@ -30,6 +30,7 @@ namespace Learn_web.Controllers
 
         public IActionResult Index()
         {
+            
            var model = Orders.get();
 
             ViewBag.temperature = GetWeather();
@@ -93,14 +94,27 @@ namespace Learn_web.Controllers
             return getModel;
         }
 
-       
+        [HttpPost]
+        public IActionResult PeriodSelection(string firstDate, string secondDate)
+        {
+            DateTime _firstDate = Convert.ToDateTime(firstDate);
+            DateTime _secondDate = Convert.ToDateTime(secondDate);
+
+            var model = Orders.get().Where(i => i.dateOrder >= _firstDate && i.dateOrder <= _secondDate);
+
+            var sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+            ViewBag.sum = sum;
+
+            return View(model);
+        }
+
         public IActionResult Privacy()
         {
             return View();
         }
 
 
-        public string GetWeather()
+        public WeatherResponse GetWeather()
         {
             Weather weather = new Weather();
 
@@ -108,10 +122,10 @@ namespace Learn_web.Controllers
 
             WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
 
-            return $"Погода в {weatherResponse.Name} состовляет {weatherResponse.Main.Temp} градусов цельсия";
-
-
+            return weatherResponse;
         }
+
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
