@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Learn_web.Repository;
 using Learn_web.DataBase;
 using Learn_web.Interfaces;
-using Learn_web.Models;
 using Newtonsoft.Json;
 
 namespace Learn_web.Controllers
@@ -28,9 +27,16 @@ namespace Learn_web.Controllers
             this.Orders = orders;
         }
 
-        public IActionResult Index()
+
+        public IActionResult Index(string search)
         {
-           var model = Orders.get();
+            
+            var model = from m in Orders.get() select m;
+           
+            if (!String.IsNullOrEmpty(search))
+            {
+                model = model.Where(i => i.clientData.Contains(search));
+            }
 
             ViewBag.temperature = GetWeather();
 
@@ -40,18 +46,17 @@ namespace Learn_web.Controllers
             return View(model);
         }
 
-        
-       
-
+        //первичное отображение страницы Create
         public ActionResult Create()
         {
             return View();
         }
 
+        //Передача даных методом post из формы create в БД
         [HttpPost]
         public ActionResult Create(Order order)
         {
-
+            //проверка валидности объекта класса Order
             if (ModelState.IsValid)
             {
                 
@@ -65,36 +70,83 @@ namespace Learn_web.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Update(Order currentOrder)
-        {
-
-            Orders.UpdateOrder(currentOrder);
-
-            return RedirectToAction("Index");
-            
-        }
-
+        //Первичное отображение представления Update
         public IActionResult Update(int id, Order order)
         {
             order = Orders.getOrder(id);
             return View(order);
         }
 
-        public IActionResult Delete(int id)
+        //Передача данных методом post в БД обновленых данных
+        [HttpPost]
+        public IActionResult Update(Order currentOrder)
         {
-            Orders.deleteOrder(id);
+            if (ModelState.IsValid)
+            {
+                Orders.UpdateOrder(currentOrder);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(currentOrder);
+            }
+            
+        }
+
+       //Метод отвечающий за удаление объекта из БД на страницу Delete передается данные выбранного обекта
+        public IActionResult Delete(int id, Order deleteOrder)
+        {
+            deleteOrder = Orders.getOrder(id);
+           
+            return View(deleteOrder);
+            
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Order deleteOrder)
+        {
+            
+            Orders.deleteOrder(deleteOrder.id);
+            
             return RedirectToAction("Index");
         }
 
-       
+
         public IActionResult Privacy()
         {
             return View();
         }
 
+        //Отображение страницы выбранного периода времени
+        public IActionResult PeriodSelection(DateTime? firstDate, DateTime? seccondDate)
+        {
+            var periodOrder = Orders.get();
+            
+            //Если выбраны обе даты
+            if (firstDate != null && seccondDate != null)
+            {
+                periodOrder = periodOrder.Where(i => i.dateOrder >= firstDate && i.dateOrder <= seccondDate);
+            }
 
-        public string GetWeather()
+            //Если выбрана только дата начала периода
+            if (firstDate != null && seccondDate == null)
+            {
+                periodOrder = periodOrder.Where(i => i.dateOrder >= firstDate);
+            }
+
+            //Если выбрана только дата окончания периода
+            if (firstDate == null && seccondDate != null)
+            {
+                periodOrder = periodOrder.Where(i => i.dateOrder <= seccondDate);
+            }
+            ViewBag.firstDate = firstDate.ToString();
+            ViewBag.seccondDate = seccondDate;
+            ViewBag.sum = periodOrder.Sum(i => i.costOfWork) - periodOrder.Sum(i => i.costOfTranslationServices);
+            return View(periodOrder);
+        }
+
+        public WeatherResponse GetWeather()
         {
             Weather weather = new Weather();
 
@@ -102,7 +154,9 @@ namespace Learn_web.Controllers
 
             WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
 
-            return $"Погода в {weatherResponse.Name} состовляет {weatherResponse.Main.Temp} градусов цельсия";
+            //weatherResponse.Main.temp;
+            //weatherResponse.weather.main
+            return weatherResponse;
 
 
         }

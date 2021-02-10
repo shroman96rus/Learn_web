@@ -7,6 +7,7 @@ namespace Learn_web.Models
 {
     public class WeatherResponse
     {
+        //public getweather weather { get; set; }
         public GetTemperature Main { get; set; }
 
         public string Name { get; set; }
@@ -15,6 +16,25 @@ namespace Learn_web.Models
     public class GetTemperature
     {
         public float Temp { get; set; }
+
+        public float feels_like { get; set; }
+
+        public float temp_min { get; set; }
+
+        public float temp_max { get; set; }
+
+        public float humidity { get; set; }
+
     }
+
+    //public class getweather
+    //{
+    //    public getlist[] main { get; set; }
+    //}
+
+    //public class getlist
+    //{
+    //    public string main { get; set; }
+    //}
 
 }
