@@ -37,12 +37,12 @@ namespace Learn_web.Controllers
             {
                 model = model.Where(i => i.clientData.Contains(search));
             }
+            
+            ViewBag.temperature = Weather.GetWeather();
 
-            ViewBag.temperature = GetWeather();
 
-            var sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
-            ViewBag.sum = sum;
-
+            ViewBag.sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+            
             return View(model);
         }
 
@@ -146,21 +146,7 @@ namespace Learn_web.Controllers
             return View(periodOrder);
         }
 
-        public WeatherResponse GetWeather()
-        {
-            Weather weather = new Weather();
-
-            string respone = weather.TestWeather();
-
-            WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
-
-            //weatherResponse.Main.temp;
-            //weatherResponse.weather.main
-            return weatherResponse;
-
-
-        }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -8,9 +8,9 @@ using System.Net;
 
 namespace Learn_web.Models
 {
-    public class Weather
+    public static class Weather
     {
-        public string TestWeather()
+        public static WeatherResponse GetWeather()
         {
             string url = "https://api.openweathermap.org/data/2.5/weather?q=Yekaterinburg&units=metric&appid=e8719b3f5140ad54cf08f0b99b974ea3";
 
@@ -25,8 +25,11 @@ namespace Learn_web.Models
                 respone = streamReader.ReadToEnd();
 
             }
+            WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
 
-            return respone;
+            //weatherResponse.weather[0].main = "Сloudy";
+
+            return weatherResponse;
         }
     }
 }
