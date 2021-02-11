@@ -7,7 +7,8 @@ namespace Learn_web.Models
 {
     public class WeatherResponse
     {
-        //public getweather weather { get; set; }
+       
+        public getlist[] weather { get; set; }
         public GetTemperature Main { get; set; }
 
         public string Name { get; set; }
@@ -27,14 +28,10 @@ namespace Learn_web.Models
 
     }
 
-    //public class getweather
-    //{
-    //    public getlist[] main { get; set; }
-    //}
-
-    //public class getlist
-    //{
-    //    public string main { get; set; }
-    //}
+   
+    public class getlist
+    {
+        public string main { get; set; }
+    }
 
 }
