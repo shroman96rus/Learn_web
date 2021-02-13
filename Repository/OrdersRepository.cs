@@ -2,15 +2,16 @@
 using Learn_web.Interfaces;
 using Learn_web.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Learn_web.Repository
 {
+
     public class OrdersRepository : IOrders
     {
+       
         private OrdersContext context;
 
         
@@ -22,6 +23,7 @@ namespace Learn_web.Repository
        
         public void CreateOrder(Order order)
         {
+
             context.Orders.Add(order);
             context.SaveChanges();
         }
@@ -49,8 +51,6 @@ namespace Learn_web.Repository
         public void UpdateOrder(Order updateOrder)
         {
             
-           
-
             context.Attach(updateOrder).State = EntityState.Modified;
             context.SaveChanges();
             

@@ -11,7 +11,7 @@ namespace Learn_web.Models
     {
         public bool IsComplete;
 
-        ///ID для базы данных
+        //ID для базы данных
         public int id { get; set; }
 
         //Дата заказа
@@ -28,7 +28,7 @@ namespace Learn_web.Models
         public string originalLanguage { get; set; }
 
         //На какой язык передвод
-        [Display(Name = "Итоговый язык документа")]
+       [Display(Name = "Итоговый язык документа")]
         public string translateLanguage { get; set; }
 
         //Стоимость работы
@@ -44,6 +44,9 @@ namespace Learn_web.Models
         //Переводчик
         [Display(Name = "Переводчик")]
         public string Translator { get; set; }
+
+        [Display(Name = "Скан документа")]
+        public string path { get; set; }
 
 
     }
