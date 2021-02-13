@@ -10,6 +10,8 @@ using Learn_web.Repository;
 using Learn_web.DataBase;
 using Learn_web.Interfaces;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace Learn_web.Controllers
 {
@@ -19,12 +21,16 @@ namespace Learn_web.Controllers
         
         IOrders Orders;
 
+        IWebHostEnvironment _appEnvironment;
+
         //Контроллер принимающий данные из контекста
-        public HomeController(ILogger<HomeController> logger, IOrders orders)
+        public HomeController(ILogger<HomeController> logger, IOrders orders, IWebHostEnvironment appEnvironment)
         {
             _logger = logger;
 
             this.Orders = orders;
+
+            _appEnvironment = appEnvironment;
         }
 
 
@@ -54,12 +60,18 @@ namespace Learn_web.Controllers
 
         //Передача даных методом post из формы create в БД
         [HttpPost]
-        public ActionResult Create(Order order)
+        public async Task<IActionResult> Create(Order order, IFormFile uploadedFile)
         {
             //проверка валидности объекта класса Order
             if (ModelState.IsValid)
             {
-                
+                string path = "/files/" + uploadedFile.FileName;
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                   await uploadedFile.CopyToAsync(fileStream);
+                }
+                order.path = path;
+
                 Orders.CreateOrder(order);
 
                 return RedirectToAction("Index");

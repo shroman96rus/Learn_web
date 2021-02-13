@@ -4,14 +4,16 @@ using Learn_web.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Learn_web.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    partial class OrdersContextModelSnapshot : ModelSnapshot
+    [Migration("20210213152910_iital")]
+    partial class iital
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,10 +43,10 @@ namespace Learn_web.Migrations
                     b.Property<DateTime>("dateOrder")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("originalLanguage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("file")
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("path")
+                    b.Property<string>("originalLanguage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("translateLanguage")
