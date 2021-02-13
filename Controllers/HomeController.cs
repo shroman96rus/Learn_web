@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Learn_web.Repository;
 using Learn_web.DataBase;
 using Learn_web.Interfaces;
-using Learn_web.Models;
+
 using Newtonsoft.Json;
 
 namespace Learn_web.Controllers
