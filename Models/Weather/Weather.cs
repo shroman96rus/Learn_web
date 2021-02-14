@@ -26,9 +26,7 @@ namespace Learn_web.Models
 
             }
             WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(respone);
-
-            //weatherResponse.weather[0].main = "Сloudy";
-
+            weatherResponse.Main.feels_like = Convert.ToInt32(weatherResponse.Main.feels_like);
             return weatherResponse;
         }
     }

@@ -8,12 +8,12 @@ namespace Learn_web.Models
     public class User
     {
         //первичный ключ
-        public int id { get; set; }
+        public int ID { get; set; }
         
         //Имя пользователя
         public string nameUser { get; set; }
 
         //Пароль пользователя
-        public string password { get; set; }
+        public string userPassword { get; set; }
     }
 }

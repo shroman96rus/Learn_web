@@ -24,11 +24,11 @@ namespace Learn_web.Models
         public string clientData { get; set; }
 
         //С какого языка перевод
-        [Display(Name = "Первоначальный язык документа")]
+        [Display(Name = "Документ")]
         public string originalLanguage { get; set; }
 
         //На какой язык передвод
-       [Display(Name = "Итоговый язык документа")]
+       [Display(Name = "Язык")]
         public string translateLanguage { get; set; }
 
         //Стоимость работы

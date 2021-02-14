@@ -14,6 +14,8 @@ using System.IO;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_web.Controllers
 {
@@ -35,7 +37,8 @@ namespace Learn_web.Controllers
             _appEnvironment = appEnvironment;
         }
 
-
+        //отображение начальной страницы
+        [Authorize]
         public IActionResult Index(string search)
         {
             
@@ -48,7 +51,7 @@ namespace Learn_web.Controllers
             
             ViewBag.temperature = Weather.GetWeather();
 
-
+            
             ViewBag.sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
             
             return View(model);
@@ -67,12 +70,16 @@ namespace Learn_web.Controllers
             //проверка валидности объекта класса Order
             if (ModelState.IsValid)
             {
-                string path = "/files/" + uploadedFile.FileName;
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                if (uploadedFile != null)
                 {
-                   await uploadedFile.CopyToAsync(fileStream);
+                    string path = "/files/" + uploadedFile.FileName;
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+                    order.path = path;
                 }
-                order.path = path;
+                
 
                 Orders.CreateOrder(order);
 
@@ -136,6 +143,20 @@ namespace Learn_web.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        //Загрузка файла
+        public async Task<FileResult> Download(string path)
+        {
+            //var paths = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\files\\", path);
+            var paths = "C:\\Users\\User\\source\\repos\\Learn_web\\wwwroot\\" + path; //необходимо разобраться почему не работает путь в текущую директорию
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(paths, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            return File(memory, MediaTypeNames.Application.Octet, Path.GetFileName(paths));
         }
 
         //Отображение страницы выбранного периода времени
