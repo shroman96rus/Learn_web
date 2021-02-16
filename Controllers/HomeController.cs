@@ -124,15 +124,19 @@ namespace Learn_web.Controllers
             
         }
 
+        //метод страницы Delete отвечающий за отображение страницы подтверждения и удаление записи из базы данных
         [HttpPost]
         public IActionResult Delete(Order deleteOrder)
         {
-            
+            var test = Orders.getOrder(deleteOrder.id);
+            RemoveFileFromServer(test.path);
             Orders.deleteOrder(deleteOrder.id);
             
             return RedirectToAction("Index");
         }
 
+
+        //Медод отвечающий за отображение детальной информации о выбранной записи
         public IActionResult Detail(int id)
         {
             var getModel = Orders.getOrder(id);
@@ -162,8 +166,26 @@ namespace Learn_web.Controllers
             return File(memory, MediaTypeNames.Application.Octet, Path.GetFileName(paths));
         }
 
-        //Отображение страницы выбранного периода времени
-        public IActionResult PeriodSelection(DateTime? firstDate, DateTime? seccondDate)
+        //Удаление файла
+        private bool RemoveFileFromServer(string path)
+        {
+            string fullPath = _appEnvironment.WebRootPath + path;
+            if (!System.IO.File.Exists(fullPath)) return false;
+            try
+            {
+                System.IO.File.Delete(fullPath);
+                return true;
+            }
+            catch (Exception e)
+            {
+                //Debug.WriteLine(e.Message);
+            }
+            return false;
+        }
+
+
+            //Отображение страницы выбранного периода времени
+            public IActionResult PeriodSelection(DateTime? firstDate, DateTime? seccondDate)
         {
             var periodOrder = Orders.get();
             
