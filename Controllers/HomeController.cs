@@ -140,8 +140,11 @@ namespace Learn_web.Controllers
         //Загрузка файла
         public async Task<FileResult> Download(string path)
         {
+            //var test = Directory.GetCurrentDirectory();
+            //Загрузка файла
+            var paths = Directory.GetCurrentDirectory() + "\\wwwroot\\" + path;
             //var paths = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\files\\", path);
-            var paths = "C:\\Users\\User\\source\\repos\\Learn_web\\wwwroot\\" + path; //необходимо разобраться почему не работает путь в текущую директорию
+            //var pathss = "C:\\Users\\User\\source\\repos\\Learn_web\\wwwroot\\" + path; //необходимо разобраться почему не работает путь в текущую директорию
             var memory = new MemoryStream();
             using (var stream = new FileStream(paths, FileMode.Open))
             {
