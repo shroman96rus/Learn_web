@@ -30,7 +30,7 @@ namespace Learn_web
         {
             services.AddControllersWithViews();
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:UserAutentification"]));
+            services.AddDbContext<PersonsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:UserAutentification"]));
             services.AddTransient<IOrders, OrdersRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions

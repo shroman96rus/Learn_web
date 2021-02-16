@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Learn_web.Models;
 using Learn_web.ViewModels;
+using Learn_web.DataBase;
+using Microsoft.EntityFrameworkCore;
 //using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 
 namespace Learn_web.Controllers
 {
     public class AccountController : Controller
     {
-        //readonly UsersRepository Users;
-        public AccountController()
+        //PersonsContext Users;
+
+        public AccountController(/*PersonsContext Users*/)
         {
-            
+            //this.Users = Users;
         }
 
         [HttpGet]
@@ -31,13 +34,11 @@ namespace Learn_web.Controllers
         {
             if (ModelState.IsValid)
             {
-                string user = null;
-                if ((model.User == "roman" && model.Password == "QWEasd321") || (model.User == "Liliya" && model.Password == "QWEasd321"))
-                {
-                    user = model.User;
-                }
                 
-                if (user != null)
+
+                //Person user = await Users.Users.FirstOrDefaultAsync(i => i.nameUser == model.User && i.userPassword == model.Password);
+
+                if (model.User == "Liliya" && model.Password == "QWEasd321") //ременно измененено (user != null)
                 {
                     await Authenticate(model.User); // аутентификация
 

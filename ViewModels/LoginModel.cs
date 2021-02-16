@@ -8,7 +8,7 @@ namespace Learn_web.ViewModels
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
+        [Required(ErrorMessage = "Не указан Login")]
         public string User { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Learn_web.Models
 {
-    public class User
+    public class Person
     {
         //первичный ключ
-        public int ID { get; set; }
+        public int Id { get; set; }
         
         //Имя пользователя
         public string nameUser { get; set; }

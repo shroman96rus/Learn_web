@@ -35,6 +35,7 @@
                         {
                             case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
                             case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
+                            case "Snow": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_snow.png" alt="Weather icon" height="70" />; break;
                             default:
                                 break;
                         }
@@ -46,10 +47,8 @@
 </div>
 <br />
 
-
-
 <form class="form-inline" asp-controller="home" asp-action="Index">
-    <div class="input-group mb-3">
+    <div class="input-group mb-0">
         <button class="btn btn-primary" type="button" id="button-addon1">Поиск</button>
         <input type="text" class="form-control" placeholder="Поиск по данным клиента" name="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
     </div>
