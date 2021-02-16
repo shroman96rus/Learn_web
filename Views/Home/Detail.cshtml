@@ -8,7 +8,6 @@
 <h3>Детально</h3>
 
 <div>
-    <h4>Order</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -61,7 +60,7 @@
                 if (Model.path != null)
                 {
                     <div>
-                        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Download", "Home", new { path = Model.path})'">Скачать документ</button>
+                       <span style="margin-right:10px;">@Model.path</span><button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Download", "Home", new { path = Model.path})'">Скачать документ</button>
                     </div>
                 }
             }
