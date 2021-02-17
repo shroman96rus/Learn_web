@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Learn_web.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,11 +19,26 @@ namespace Learn_web.Migrations
                     translateLanguage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     costOfWork = table.Column<double>(type: "float", nullable: false),
                     costOfTranslationServices = table.Column<double>(type: "float", nullable: true),
-                    Translator = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Translator = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    path = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nameUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 
@@ -31,6 +46,9 @@ namespace Learn_web.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learn_web.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20210213152031_Initial")]
-    partial class Initial
+    [Migration("20210217104645_useradd")]
+    partial class useradd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,12 +46,33 @@ namespace Learn_web.Migrations
                     b.Property<string>("originalLanguage")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("path")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("translateLanguage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Learn_web.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("nameUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

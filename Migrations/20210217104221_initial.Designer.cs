@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learn_web.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20210214160126_iitial")]
-    partial class iitial
+    [Migration("20210217104221_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,10 +35,10 @@ namespace Learn_web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("costOfTranslationServices")
-                        .HasColumnType("double(18)");
+                        .HasColumnType("float");
 
                     b.Property<double>("costOfWork")
-                        .HasColumnType("double(18)");
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("dateOrder")
                         .HasColumnType("datetime2");
@@ -59,7 +59,7 @@ namespace Learn_web.Migrations
 
             modelBuilder.Entity("Learn_web.Models.User", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -67,10 +67,10 @@ namespace Learn_web.Migrations
                     b.Property<string>("nameUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("userPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
