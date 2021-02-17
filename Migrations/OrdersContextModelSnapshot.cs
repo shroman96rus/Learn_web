@@ -33,10 +33,10 @@ namespace Learn_web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("costOfTranslationServices")
-                        .HasColumnType("double(18)");
+                        .HasColumnType("float");
 
                     b.Property<double>("costOfWork")
-                        .HasColumnType("double(18)");
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("dateOrder")
                         .HasColumnType("datetime2");
@@ -57,7 +57,7 @@ namespace Learn_web.Migrations
 
             modelBuilder.Entity("Learn_web.Models.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -68,7 +68,7 @@ namespace Learn_web.Migrations
                     b.Property<string>("userPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });

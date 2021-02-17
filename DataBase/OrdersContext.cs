@@ -10,7 +10,7 @@ namespace Learn_web.DataBase
 
         public DbSet<Order> Orders { get; set; }
 
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

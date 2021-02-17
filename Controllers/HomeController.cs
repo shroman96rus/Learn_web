@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -38,7 +39,7 @@ namespace Learn_web.Controllers
         }
 
         //отображение начальной страницы
-        [Authorize]
+        
         public IActionResult Index(string search)
         {
             

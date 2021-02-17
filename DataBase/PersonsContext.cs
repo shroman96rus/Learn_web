@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learn_web.DataBase
 {
-    public class PersonsContext : DbContext
-    {
-        public PersonsContext(DbContextOptions<PersonsContext> options) : base(options)
-        { }
+    //public class PersonsContext : DbContext
+    //{
+    //    public PersonsContext(DbContextOptions<PersonsContext> options) : base(options)
+    //    { }
 
-        public DbSet<Person> Users { get; set; }
-    }
+    //    public DbSet<User> Users { get; set; }
+    //}
 }

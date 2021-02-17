@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Learn_web.Models
 {
-    public class Person
+    public class User
     {
         //первичный ключ
         public int Id { get; set; }

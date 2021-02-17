@@ -15,11 +15,11 @@ namespace Learn_web.Controllers
 {
     public class AccountController : Controller
     {
-        //PersonsContext Users;
+        OrdersContext Users;
 
-        public AccountController(/*PersonsContext Users*/)
+        public AccountController(OrdersContext Users)
         {
-            //this.Users = Users;
+            this.Users = Users;
         }
 
         [HttpGet]
@@ -36,9 +36,9 @@ namespace Learn_web.Controllers
             {
                 
 
-                //Person user = await Users.Users.FirstOrDefaultAsync(i => i.nameUser == model.User && i.userPassword == model.Password);
+                User user = await Users.Users.FirstOrDefaultAsync(i => i.nameUser == model.User && i.userPassword == model.Password);
 
-                if (model.User == "Liliya" && model.Password == "QWEasd321") //ременно измененено (user != null)
+                if (model.User == user.nameUser && model.Password == user.userPassword) //ременно измененено (user != null)
                 {
                     await Authenticate(model.User); // аутентификация
 
