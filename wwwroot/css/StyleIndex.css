@@ -12,6 +12,14 @@
 */
 .text-center {
     font-family: 'Inter', sans-serif;
-    box-shadow:3px 3px 5px #808080;
+   
+    margin-bottom: 0px;
 
+}
+
+#button-choise{
+    margin-bottom: 100px;
+}
+
+#table1 {
 }
