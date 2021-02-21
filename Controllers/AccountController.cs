@@ -40,7 +40,7 @@ namespace Learn_web.Controllers
 
                 if (model.User == user.nameUser && model.Password == user.userPassword) //ременно измененено (user != null)
                 {
-                    await Authenticate(model.User); // аутентификация
+                    await Authenticate(user); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -49,12 +49,15 @@ namespace Learn_web.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(string userName)
+
+
+        private async Task Authenticate(User user)
         {
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.nameUser),
+                new Claim(ClaimTypes.Role, user.role)
             };
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
@@ -67,5 +70,41 @@ namespace Learn_web.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
         }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await Users.Users.FirstOrDefaultAsync(u => u.nameUser == model.nameUser);
+                if (user == null)
+                {
+                    // добавляем пользователя в бд
+                    user = new User
+                    {
+                        nameUser = model.nameUser,
+                        userPassword = model.userPassword,
+                        role = model.role,
+
+                    };
+                    Users.Users.Add(user);
+                    await Users.SaveChangesAsync();
+
+                    await Authenticate(user);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+            }
+            return View(model);
+        }
+
     }
 }

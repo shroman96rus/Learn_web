@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learn_web.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20210217104645_useradd")]
-    partial class useradd
+    [Migration("20210221102343_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,9 @@ namespace Learn_web.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("nameUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("userPassword")
