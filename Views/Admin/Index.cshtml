@@ -1,0 +1,33 @@
+﻿@using Learn_web.Controllers
+@using Learn_web.Models
+@using System
+@using System.Linq
+
+
+@model IEnumerable<User>
+
+<h1>Панель администратора</h1>
+
+<h3>пользователи зарегистрированные в системе</h3>
+
+<table class="table table-hover" id="table1">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(i => i.nameUser)</th>
+            <th>@Html.DisplayNameFor(i => i.userPassword)</th>
+            <th>@Html.DisplayNameFor(i => i.role)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nameUser</td>
+                <td>@item.userPassword</td>
+                <td>@item.role</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+   

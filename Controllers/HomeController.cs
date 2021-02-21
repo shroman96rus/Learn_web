@@ -2,16 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Learn_web.Repository;
-using Learn_web.DataBase;
 using Learn_web.Interfaces;
 using System.IO;
-
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
@@ -19,21 +14,23 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_web.Controllers
 {
-    [Authorize(Policy = "Admin")]
+    [Authorize(Policy = "User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         
         IOrders Orders;
+        IUsers Users;
 
         IWebHostEnvironment _appEnvironment;
 
         //Контроллер принимающий данные из контекста
-        public HomeController(ILogger<HomeController> logger, IOrders orders, IWebHostEnvironment appEnvironment)
+        public HomeController(ILogger<HomeController> logger, IOrders orders, IUsers users, IWebHostEnvironment appEnvironment)
         {
             _logger = logger;
 
             this.Orders = orders;
+            this.Users = users;
 
             _appEnvironment = appEnvironment;
         }
@@ -51,7 +48,7 @@ namespace Learn_web.Controllers
             }
             
             ViewBag.temperature = Weather.GetWeather();
-
+            
             
             ViewBag.sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
             
