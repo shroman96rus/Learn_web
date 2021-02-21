@@ -33,6 +33,7 @@ namespace Learn_web
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             //services.AddDbContext<PersonsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:UserAutentification"])); //создание второй БД с данными пользователей 
             services.AddTransient<IOrders, OrdersRepository>();
+            services.AddTransient<IUsers, UsersRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
@@ -40,6 +41,7 @@ namespace Learn_web
                 });
             services.AddAuthorization(opts =>
             {
+                opts.AddPolicy("User", policy => { policy.RequireClaim(ClaimTypes.Role); });
                 opts.AddPolicy("Admin", policy => { policy.RequireClaim(ClaimTypes.Role, "Admin"); });
             });
         }

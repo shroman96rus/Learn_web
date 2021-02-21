@@ -22,6 +22,7 @@ namespace Learn_web.Controllers
             this.Users = Users;
         }
 
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -38,13 +39,14 @@ namespace Learn_web.Controllers
 
                 User user = await Users.Users.FirstOrDefaultAsync(i => i.nameUser == model.User && i.userPassword == model.Password);
 
-                if (model.User == user.nameUser && model.Password == user.userPassword) //ременно измененено (user != null)
+                if (user != null) //ременно измененено (user != null)
                 {
                     await Authenticate(user); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("Login", "Некорректные логин и(или) пароль");
+
             }
             return View(model);
         }
@@ -105,6 +107,8 @@ namespace Learn_web.Controllers
             }
             return View(model);
         }
+
+
 
     }
 }

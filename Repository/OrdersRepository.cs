@@ -33,7 +33,7 @@ namespace Learn_web.Repository
             Order findOder = getOrder(ID);
             context.Orders.Remove(findOder);
             context.SaveChanges();
-            //return findOder;
+           
         }
 
         
