@@ -15,8 +15,8 @@ namespace Learn_web.Models
         public int id { get; set; }
 
         //Дата заказа
-       [DataType(DataType.Date)]
-       [Display(Name = "Дата заказа")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата заказа")]
         public DateTime dateOrder { get; set; }
 
         //Данные клиента
@@ -28,7 +28,7 @@ namespace Learn_web.Models
         public string originalLanguage { get; set; }
 
         //На какой язык передвод
-       [Display(Name = "Язык")]
+        [Display(Name = "Язык")]
         public string translateLanguage { get; set; }
 
         //Стоимость работы

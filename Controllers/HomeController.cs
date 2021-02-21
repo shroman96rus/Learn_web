@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_web.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -179,7 +179,7 @@ namespace Learn_web.Controllers
             }
             catch (Exception e)
             {
-                //Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.Message);
             }
             return false;
         }

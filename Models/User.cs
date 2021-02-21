@@ -15,5 +15,7 @@ namespace Learn_web.Models
 
         //Пароль пользователя
         public string userPassword { get; set; }
+
+        public string role { get; set; }
     }
 }

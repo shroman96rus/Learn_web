@@ -65,6 +65,9 @@ namespace Learn_web.Migrations
                     b.Property<string>("nameUser")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("userPassword")
                         .HasColumnType("nvarchar(max)");
 
