@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace Learn_web.Controllers
 {
@@ -18,11 +19,9 @@ namespace Learn_web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        
-        IOrders Orders;
-        IUsers Users;
-
-        IWebHostEnvironment _appEnvironment;
+        private readonly IOrders Orders;
+        readonly IUsers Users;
+        readonly IWebHostEnvironment _appEnvironment;
 
         //Контроллер принимающий данные из контекста
         public HomeController(ILogger<HomeController> logger, IOrders orders, IUsers users, IWebHostEnvironment appEnvironment)
@@ -71,7 +70,7 @@ namespace Learn_web.Controllers
                 if (uploadedFile != null)
                 {
                     string path = "/files/" + uploadedFile.FileName;
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    using (FileStream fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await uploadedFile.CopyToAsync(fileStream);
                     }
@@ -90,9 +89,9 @@ namespace Learn_web.Controllers
         }
 
         //Первичное отображение представления Update
-        public IActionResult Update(int id, Order order)
+        public IActionResult Update(int id)
         {
-            order = Orders.getOrder(id);
+            Order order = Orders.getOrder(id);
             return View(order);
         }
 
@@ -114,12 +113,11 @@ namespace Learn_web.Controllers
         }
 
        //Метод отвечающий за удаление объекта из БД на страницу Delete передается данные выбранного обекта
-        public IActionResult Delete(int id, Order deleteOrder)
+        public IActionResult Delete(int id)
         {
-            deleteOrder = Orders.getOrder(id);
+           Order deleteOrder = Orders.getOrder(id);
            
             return View(deleteOrder);
-            
         }
 
         //метод страницы Delete отвечающий за отображение страницы подтверждения и удаление записи из базы данных

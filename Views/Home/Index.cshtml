@@ -16,14 +16,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/StyleIndex.css" />
 </head>
-
+<header>
+    <div class="account">
+        @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
+        {
+        <div>
+            <a asp-controller="admin" asp-action="index">открыть панель администратора</a>
+        </div>
+        }
+        <a style="text-align:right;" asp-action="Logout" asp-controller="Account">Выдти из системы</a>
+    </div>
+</header>
 <h1>Система учета заказов</h1>
 
 
-@if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
-{
-<a asp-controller="admin" asp-action="index">открыть панель администратора</a>
-}
+
+
 
 
 <div style="max-width: 400px; margin-top:20px;">
@@ -148,14 +156,7 @@
     </div>
 </div>
 
-<div>
-    <p>Выберите периода за который необходимо преставить информацию</p>
-    <form asp-controller="home" asp-action="PeriodSelection" method="post">
-        <input type="text" name="firstDate" value="" />
-        <input type="text" name="secondDate" value="" />
-        <input type="submit"  value="Сформировать отчет" />
-    </form>
-</div>
+
 
 
 

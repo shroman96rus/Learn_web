@@ -15,7 +15,7 @@ namespace Learn_web.Controllers
 {
     public class AccountController : Controller
     {
-        OrdersContext Users;
+        readonly OrdersContext Users;
 
         public AccountController(OrdersContext Users)
         {
@@ -100,7 +100,7 @@ namespace Learn_web.Controllers
 
                     await Authenticate(user);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
