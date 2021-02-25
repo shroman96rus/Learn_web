@@ -100,7 +100,7 @@ namespace Learn_web.Controllers
 
                     await Authenticate(user);
 
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");

@@ -13,7 +13,7 @@ namespace Learn_web.Controllers
     [Authorize(Policy = "Admin")]
     public class AdminController : Controller
     {
-        //OrdersContext Users;
+        
         private readonly IUsers Users;
 
         public AdminController(IUsers Users)

@@ -2,7 +2,7 @@
 
 
 
-h2 {
+h1 {
     
     font-family: 'Russo One', sans-serif;
     margin-bottom: 15px;
@@ -10,8 +10,16 @@ h2 {
     
 }
 
-.form-group {
-   
-    max-width:30%;
+.Login_form {
+    /*border: 2px double #000000;*/
+    max-width: 30%;
+    padding: 15px;
+    border-radius: 10%;
+    box-shadow: 2px 2px 8px;
 }
+
+
+
+   
+
 

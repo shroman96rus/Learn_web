@@ -22,6 +22,7 @@ namespace Learn_web.Controllers
         private readonly IOrders Orders;
         readonly IUsers Users;
         readonly IWebHostEnvironment _appEnvironment;
+       
 
         //Контроллер принимающий данные из контекста
         public HomeController(ILogger<HomeController> logger, IOrders orders, IUsers users, IWebHostEnvironment appEnvironment)
@@ -43,7 +44,17 @@ namespace Learn_web.Controllers
            
             if (!String.IsNullOrEmpty(search))
             {
-                model = model.Where(i => i.clientData.Contains(search));
+                if (search == "orderBy")
+                {
+                    //count++;
+                  model = model.OrderBy(i => i.clientData);
+                    
+                }
+                else
+                {
+                    model = model.Where(i => i.clientData.Contains(search));
+                }
+                
             }
             
             ViewBag.temperature = Weather.GetWeather();
