@@ -1,84 +1,206 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-
-
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
+﻿/*Обнуление*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
-.navbar-brand {
-    font-family: 'Poiret One';
-    font-size: 32px;
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+:focus, :active {
+    outline: none;
 }
 
-.svg-nav-bar {
-    fill: #24f03f;
-    margin-bottom: 0px;
-    margin-top: 5px;
-}
-/* Provide sufficient contrast against white background */
-a {
-    color: #1b6ec2;
+a:focus, a:active {
+    outline: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+nav, footer, header, aside {
+    display: block;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+input, button, textarea {
+    font-family: inherit;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    input::-ms-clear {
+        display: none;
+    }
+
+button {
+    cursor: pointer;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+a, a:visited {
+    text-decoration: none;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    a:hover {
+        text-decoration: none;
+    }
+
+ul li {
+    list-style: none;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+img {
+    vertical-align: top;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+/*--------------------*/
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 10px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background: #4c4c4c;
+    background: -moz-linear-gradient(-45deg, #4c4c4c 2%, #595959 8%, #474747 35%, #000000 74%, #1c1c1c 91%, #131313 100%);
+    background: -webkit-linear-gradient(-45deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
+    background: linear-gradient(135deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=1 );
+    /*font-size: 40px;*/
 }
 
+h1 {
+    font-family: 'Play', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 20px 0px;
+}
+
+dl dt, dd{
+    font-size: 14px;
+    padding: 10px;
+}
+
+a {
+    color: white;
+}
+
+    a:hover {
+        color: white;
+    }
+
+
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    /*flex: 1 1 auto;*/
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    
+}
+
+.nav {
+    background: #323233;
+    padding: 20px 20px;
+}
+
+.nav__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav__logo {
+    /*border: 1px solid white;*/
+    font-family: 'Pattaya', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    padding: 0px 10px;
+}
+
+.nav__statistic {
+    /*border: 1px solid white;*/
+    font-family: 'Kurale', serif;
+    font-size: 18px;
+    padding: 0px 10px;
+    flex-grow: 1;
+}
+
+.nav__user {
+    /*border: 1px solid white;*/
+    font-family: 'Kurale', serif;
+    font-size: 18px;
+    padding: 0px 10px;
+    color: white;
+}
+
+.nav__logout {
+    /*border: 1px solid white;*/
+    font-family: 'Kurale', serif;
+    font-size: 18px;
+    padding: 10px 10px;
+}
+
+    .nav__logout:hover{
+        background: white;
+        
+    }
+
+    .nav__logout:hover  a{
+        color: black;
+    }
+
+    .footer {
+        background: #f2f5ff;
+    }
+
+.footer__row {
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.foter__text {
+    color: black;
+    font-family: 'Kurale', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}

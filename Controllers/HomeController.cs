@@ -123,7 +123,23 @@ namespace Learn_web.Controllers
             
         }
 
-       //Метод отвечающий за удаление объекта из БД на страницу Delete передается данные выбранного обекта
+        public IActionResult Detail(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Order detailOrder = Orders.getOrder(id);
+
+                return View(detailOrder);
+                
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        //Метод отвечающий за удаление объекта из БД на страницу Delete передается данные выбранного обекта
         public IActionResult Delete(int id)
         {
            Order deleteOrder = Orders.getOrder(id);

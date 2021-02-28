@@ -7,35 +7,36 @@
 @model IEnumerable<User>
 
 <h1>Панель администратора</h1>
+<div class="container">
+    <a asp-action="Register" asp-controller="Account">Создать пользователя</a>
+    <h2>Пользователи зарегистрированные в системе</h2>
 
-<a asp-action="Register" asp-controller="Account">Создать пользователя</a>
-<h3>Пользователи зарегистрированные в системе</h3>
-
-<table class="table table-hover" id="table1">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(i => i.nameUser)</th>
-            <th>@Html.DisplayNameFor(i => i.userPassword)</th>
-            <th>@Html.DisplayNameFor(i => i.role)</th>
-            <th>Выбор действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-hover" id="table1" style="color:white;">
+        <thead>
             <tr>
-                <td>@item.nameUser</td>
-                <td>@item.userPassword</td>
-                <td>@item.role</td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Update", "Admin", new { id = item.Id })'">Обновить</button>
-                        <button type="button" class="btn btn-danger"onclick="location.href='@Url.Action("Delete", "Admin", new { id = item.Id })'">Удалить</button>
-                    </div>
-                </td>
+                <th>@Html.DisplayNameFor(i => i.nameUser)</th>
+                <th>@Html.DisplayNameFor(i => i.userPassword)</th>
+                <th>@Html.DisplayNameFor(i => i.role)</th>
+                <th>Выбор действия</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nameUser</td>
+                    <td>@item.userPassword</td>
+                    <td>@item.role</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Update", "Admin", new { id = item.Id })'">Обновить</button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Admin", new { id = item.Id })'">Удалить</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-   
+

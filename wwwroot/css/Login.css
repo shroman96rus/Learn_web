@@ -1,25 +1,207 @@
-﻿
+﻿/*Обнуление*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
 
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
+:focus, :active {
+    outline: none;
+}
 
-h1 {
-    
-    font-family: 'Russo One', sans-serif;
-    margin-bottom: 15px;
-    font-size: 35px;
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+    input::-ms-clear {
+        display: none;
+    }
+
+button {
+    cursor: pointer;
+}
+
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+a, a:visited {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+/*--------------------*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background: #4c4c4c;
+    background: -moz-linear-gradient(-45deg, #4c4c4c 2%, #595959 8%, #474747 35%, #000000 74%, #1c1c1c 91%, #131313 100%);
+    background: -webkit-linear-gradient(-45deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
+    background: linear-gradient(135deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=1 );
+    /*font-size: 40px;*/
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 1 auto;
+}
+
+.login {
+    /*border: 2px solid white;*/
+    text-align: center;
+    margin: 40px auto;
+}
+
+.login__row {
+    display: inline-flex;
+    flex-direction: column;
+    /*border: 1px solid white;*/
+    padding: 20px 20px;
     
 }
 
-.Login_form {
-    /*border: 2px double #000000;*/
-    max-width: 30%;
-    padding: 15px;
-    border-radius: 10%;
-    box-shadow: 2px 2px 8px;
+.login__logo {
+    padding: 20px 15px;
+    /*border: 1px solid white;*/
+    font-family: 'Pattaya', sans-serif;
+    font-size: 38px;
+    color: black;
+    background: white;
+    border-radius: 15px;
 }
 
+.login__form {
+    /*border: 1px solid white;*/
+    padding: 10px 5px;
+    font-size: 18px;
+    font-family: 'Podkova', serif;
+}
+
+    .login__form form {
+        display: inline-flex;
+        flex-direction: column;
+    }
+
+        .login__form form:focus {
+            box-shadow: 3px 3px 5px #595959;
+        }
+
+        .login__form form #name_login {
+            margin: 20px 0px 10px 0px;
+        }
+
+        .login__form form label {
+            padding: 0px 10px 0px 10px;
+            margin: 0px 0px 10px 0px;
+            /*border: 1px solid white;*/
+            text-align: start;
+        }
 
 
-   
 
+        .login__form form input {
+            margin: 0px 5px 20px 5px;
+            /*border: 1px solid white;*/
+            padding: 8px;
+            font-size: 18px;
+        }
 
+            .login__form form input:hover {
+                box-shadow: 2px 2px 8px grey inset;
+            }
+
+            .login__form form input:focus {
+                box-shadow: 2px 2px 8px grey;
+            }
+
+        .login__form form button {
+            max-width: 90px;
+            min-height: 30px;
+            margin: 0px 5px 10px 5px;
+            padding: 10px;
+            /*font-size: 18px;
+            font-weight: 800;
+            color: white;
+            background: cornflowerblue;*/
+        }
+/**/
+          /*  .login__form form button:hover {
+                box-shadow: 2px 2px 8px grey;
+            }
+
+            .login__form form button:focus {
+                box-shadow: 2px 2px 8px grey;
+            }*/
+
+.footer {
+    background: #f2f5ff;
+}
+
+.footer__row {
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__text {
+    color: black;
+    font-family: 'Kurale', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}

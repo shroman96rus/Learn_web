@@ -7,50 +7,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/PeriodSelection.css" />
+</head>
+
 <h2>Заказы за @ViewBag.firstDate - @ViewBag.seccondDate</h2>
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
-            <th>@Html.DisplayNameFor(i => i.clientData)</th>
-            <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
-            <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
-            <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
-            <th>@Html.DisplayNameFor(i => i.Translator)</th>
-            <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
-        </tr>
-
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="container">
+    <table class="table" style="color:white;">
+        <thead class="thead-dark">
             <tr>
-                <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
-                <td>@item.clientData</td>
-                <td>@item.originalLanguage</td>
-                <td>@item.translateLanguage</td>
-                <td>
-                    @item.costOfWork <span>руб</span>
-                </td>
-                <td>@item.Translator</td>
-                <td>
-                    @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
-                    {<span>руб</span>}
-                </td>
-
+                <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
+                <th>@Html.DisplayNameFor(i => i.clientData)</th>
+                <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
+                <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
+                <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
+                <th>@Html.DisplayNameFor(i => i.Translator)</th>
+                <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
             </tr>
-        }
 
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
+                    <td>@item.clientData</td>
+                    <td>@item.originalLanguage</td>
+                    <td>@item.translateLanguage</td>
+                    <td>
+                        @item.costOfWork <span>руб</span>
+                    </td>
+                    <td>@item.Translator</td>
+                    <td>
+                        @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
+                        {<span>руб</span>}
+                    </td>
 
-<div class="card">
-    <div class="card-body">
-        <span>Сумма заработанная за выбранный период: @ViewBag.sum рублей</span>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="summ">
+        <div class="container">
+            <div class="summ__row">
+                <div class="summ__value">
+                    Сумма заработанная на данный момент: @ViewBag.sum рублей
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Вернуться на главную страницу</a>
-</div>
+    <div>
+        <a asp-action="Index">Вернуться на главную страницу</a>
+    </div>

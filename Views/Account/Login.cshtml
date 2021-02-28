@@ -4,13 +4,58 @@
     ViewData["Title"] = "Проверка пользователя";
 }
 
+@{
+    Layout = "";
+}
+
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script data-require="jquery" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&family=Podkova:wght@600&display=swap" rel="stylesheet">
+    <title>@ViewData["Title"] Учет заказов</title>
 </head>
 
-<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="login">
+            <div class="container">
+                <div class="login__block">
+                    <div class="login__row">
+                        <div class="login__logo">Бюро переводов</div>
+                        <div class="login__form">
+                            <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+                                <label for="" id="name_login">Имя пользователя:</label>
+                                <input type="text" name="User">
+                                @*<small class="form-text text-muted">Введите имя пользователя</small>*@
+                                <label for="">Введите пароль:</label>
+                                <input type="password" name="Password">
+                                @*<small class="form-text text-muted">Введите пароль</small>*@
+                                <button type="submit" class="btn btn-primary">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__row">
+                <div class="footer__text">
+                    Шихов Р.В. 2021
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+@*<body>
     <h1>
         Вход на сайт
     </h1>
@@ -28,5 +73,5 @@
         <button type="submit" class="btn btn-primary">Вход</button>
     </form>
 
-</body>
+</body>*@
 

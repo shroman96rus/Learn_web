@@ -9,39 +9,49 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kurale&family=Yeseva+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white">
-            <img src="~/images/home-lightbulb.svg" width="40" height="40">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> Бюро переводов</a>
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="wrapper">
+        <dev class="content">
+            <nav class="nav">
+                <div class="container">
+                    <div class="nav__row">
+                        <div class="nav__logo">
+                            <a asp-controller="Home" asp-action="Index">Бюро переводов</a>
+                        </div>
+                        <div class="nav__statistic">
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Статистика</a>
+                        </div>
 
-            <div class="navbar-collapse collapse" id="navbars">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Домой <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Контакты</a>
-                    </li>
-                </ul>
+                        <div class="nav__user">Добро пожаловать: @User.Identity.Name</div>
+
+
+                        <div class="nav__logout">
+                            <a asp-action="Logout" asp-controller="Account">Выйти из программы</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="conteiner">
+                <main role="main">
+                    @RenderBody()
+                </main>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; Разработано Шихов Р.В. 2021 год <a asp-area="" asp-controller="Home" asp-action="Privacy">Контакты</a>
+            <div class="footer__row">
+                <div class="foter__text">Создано Шихов Р.В. 2021</div>
+            </div>
         </div>
     </footer>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

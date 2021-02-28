@@ -1,0 +1,62 @@
+﻿
+body {
+    color: black;
+}
+
+.row{
+    display:inline-flex;
+    text-align:center;
+    
+}
+
+.col-sm{
+    
+    
+
+}
+
+h1 {
+    font-family: 'Play', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+
+.card {
+    background: url("../images/gradient-prostoj-fon-temnyj-fon.png")0 0 no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+#weather {
+    /*border: 5px solid #ff6a00;*/
+    max-width: 380px;
+    margin: 10px 0px;
+   
+}
+
+#account {
+    /*border: 1px solid grey;*/
+    padding: 10px;
+}
+
+
+#account a {
+    text-align: left;
+}
+
+
+
+#table1 {
+    font-family: 'Jura', sans-serif;
+    
+}
+
+#search input{
+    border: 2px solid black;
+}
+
+
+
+
+
+

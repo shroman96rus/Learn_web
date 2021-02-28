@@ -1,62 +1,102 @@
 ﻿
-body {
-    color: black;
-}
-
-.row{
-    display:inline-flex;
-    text-align:center;
-    
-}
-
-.col-sm{
-    
-    
-
-}
 
 h1 {
     font-family: 'Play', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
-}
-
-.card {
-    background: url("../images/gradient-prostoj-fon-temnyj-fon.png")0 0 no-repeat;
-    background-size: cover;
     color: white;
-}
-
-#weather {
-    /*border: 5px solid #ff6a00;*/
-    max-width: 380px;
-    margin: 10px 0px;
-   
-}
-
-#account {
-    /*border: 1px solid grey;*/
-    padding: 10px;
+    margin: 20px auto;
 }
 
 
-#account a {
-    text-align: left;
+
+.weather__row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    /*background: #a9e4f7;
+    background: -moz-linear-gradient(-45deg, #a9e4f7 0%, #0fb4e7 100%);
+    background: -webkit-linear-gradient(-45deg, #a9e4f7 0%,#0fb4e7 100%);
+    background: linear-gradient(135deg, #a9e4f7 0%,#0fb4e7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=1 );*/
+    margin: 20px 10px;
+    padding: 20px 20px;
+    /*border: 1px solid white;*/
 }
 
+.weather__text {
+    /*border: 1px solid white;*/
+    padding: 5px 10px 5px 20px;
+    align-items: end;
+}
 
+    .weather__text span{
+        font-size: 18px;
+        font-weight:700;
+        text-align:end;
+
+    }
+
+.weather__image {
+    /*border: 1px solid white;*/
+    padding: 5px 0px 5px 0px;
+    align-items:start;
+}
+
+.create {
+    /*border: 2px solid white;*/
+    margin: 20px 0px 5px 0px;
+}
+
+.create__row {
+    display: flex;
+}
 
 #table1 {
     font-family: 'Jura', sans-serif;
+    color:white;
     
 }
 
-#search input{
-    border: 2px solid black;
+    #table1 tr:hover {
+        background: -moz-linear-gradient(-45deg, rgba(110,119,116,0.2) 0%, rgba(110,119,116,0.34) 23%, rgba(10,14,10,0.58) 63%, rgba(10,8,9,0.8) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(110,119,116,0.2) 0%,rgba(110,119,116,0.34) 23%,rgba(10,14,10,0.58) 63%,rgba(10,8,9,0.8) 100%);
+        background: linear-gradient(135deg, rgba(110,119,116,0.2) 0%,rgba(110,119,116,0.34) 23%,rgba(10,14,10,0.58) 63%,rgba(10,8,9,0.8) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336e7774', endColorstr='#cc0a0809',GradientType=1 );
+        color:white
+    }
+
+    #search input {
+        border: 2px solid black;
+    }
+
+.summ {
+    /*border: 2px solid white;*/
 }
 
+.summ__row {
+    /*border: 2px solid white;*/
+    display: inline-flex;
+    padding: 20px;
+}
 
+.summ__value {
+    /*border: 2px solid white;*/
+    font-size: 20px;
+}
 
+#PeriodSelection{
+    color: black;
+}
+
+.modal-title{
+    font-size: 18px;
+    font-weight:700;
+    text-align:center;
+}
+
+.modal-body {
+    font-size: 14px;
+}
 
 
 

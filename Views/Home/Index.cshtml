@@ -22,119 +22,126 @@
 
 
     <h1>Система учета заказов</h1>
-
-    <div class="container" id="account">
-        <div class="row">
-
-            @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
-            {
-                <div class="col-sm" style="text-align:start">
-                    <a asp-controller="admin" asp-action="index">Открыть панель администратора</a>
-                </div>
-                
-            }
-            <div class="col-sm" style="text-align:start">
-                <a asp-action="Logout" asp-controller="Account">Выйти из системы</a>
-            </div>
-        </div>
-    </div>
-
-
-   <div class="card" id="weather">
-        <div class="card-body shadow-sm">
-            <div class="row justify-content-md-start">
-                <div class="col-md-auto">
-                    <p>Погода в Екатеринбурге: @ViewBag.temperature.Main.Temp</p>
-                    <p>Ощущается как: @ViewBag.temperature.Main.feels_like</p>
-                    @*<p>@ViewBag.temperature.weather[0].main</p>*@
-            </div>
-        <div class="col-md-auto">
-        @{
-        switch (@ViewBag.temperature.weather[0].main)
-            {
-                case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
-                case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
-                case "Snow": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_snow.png" alt="Weather icon" height="70" />; break;
-                default: break;
-            }
-        }
-            </div>
-        </div>
-    </div>
-   </div>
-
-   <div class="container">
-       <div class="container-new-item">
-        <a asp-controller="home" asp-action="Create" style="margin:0px 0px 0px 0px;">Создать запись</a>
-       </div>
-   </div>
-
-<div class="container">
-    <div class="small">
-        <form class="form" asp-controller="home" asp-action="Index">
-            <button class="btn btn-primary" type="submit" name="search" value="orderBy">Сортировка по возрастанию</button>
-        </form>
-    </div>
-</div>
-
-<form class="form" asp-controller="home" asp-action="Index" id="search">
-    <div class="input-group mb-0">
-        <button class="btn btn-primary" type="button" id="button-addon1">Поиск</button>
-        <input type="text" class="form-control" placeholder="Поиск по данным клиента" name="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        <button class="btn btn-primary" type="button" name="search" value="orderBy">Сортировка по возрастанию</button>
-    </div>
-</form>
-            <table class="table table-hover" id="table1">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
-                        <th>@Html.DisplayNameFor(i => i.clientData)</th>
-                        <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
-                        <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
-                        <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
-                        <th>@Html.DisplayNameFor(i => i.Translator)</th>
-                        <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
-                        <th>Производимые операции</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+    
+    
+    <div class="admin">
+        <div class="container">
+            <div class="admin__row">
+                <div class="admin__open">
+                    @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
                     {
-                        <tr>
-                            <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
-                            <td>@item.clientData</td>
-                            <td>@item.originalLanguage</td>
-                            <td>@item.translateLanguage</td>
-                            <td>
-                                @item.costOfWork <span>руб</span>
-                            </td>
-                            <td>@item.Translator</td>
-                            <td>
-                                @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
-                                {<span>руб</span>}
-                            </td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Detail", "Home", new { id = item.id })'">Детально</button>
-                                    <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = item.id })'">Удалить</button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
 
-            <div class="card">
-                <div class="card-body shadow-sm">
-                    <span>Сумма заработанная на данный момент: @ViewBag.sum рублей</span>
+                        <a asp-controller="admin" asp-action="index">Открыть панель администратора </a>
+                    }
 
                 </div>
             </div>
+        </div>
+    </div>
 
+
+
+        <div class="weather">
+            <div class="container">
+                <div class="weather__row">
+                    <div class="weather__text">
+                        <p>Погода в Екатеринбурге: <span>@ViewBag.temperature.Main.Temp</span></p>
+                        <p>Ощущается как: <span>@ViewBag.temperature.Main.feels_like</span></p>
+                        @*<p>@ViewBag.temperature.weather[0].main</p>*@
+                    </div>
+                    <div class="weather__image">
+                        @{
+                            switch (@ViewBag.temperature.weather[0].main)
+                            {
+                                case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
+                                case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
+                                case "Snow": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_snow.png" alt="Weather icon" height="70" />; break;
+                                default: break;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="create">
+            <div class="container">
+                <div class="create__row">
+                    <div class="create__new-item">
+                        <a asp-controller="home" asp-action="Create">Создать запись</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container">
+            <form class="form" asp-controller="home" asp-action="Index" id="search">
+                <div class="input-group mb-0">
+                    <button class="btn btn-primary" type="button" id="button-addon1">Поиск</button>
+                    <input type="text" class="form-control" placeholder="Поиск по данным клиента" name="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+                <table class="table table-hover" id="table1">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
+                            <th onclick="location.href='@Url.Action("Index", "Home", new { search = "orderBy"})'">@Html.DisplayNameFor(i => i.clientData)</th>
+                            <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
+                            <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
+                            <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
+                            <th>@Html.DisplayNameFor(i => i.Translator)</th>
+                            <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
+                            <th>Производимые операции</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
+                                <td>@item.clientData</td>
+                                <td>@item.originalLanguage</td>
+                                <td>@item.translateLanguage</td>
+                                <td>
+                                    @item.costOfWork <span>руб</span>
+                                </td>
+                                <td>@item.Translator</td>
+                                <td>
+                                    @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
+                                    {<span>руб</span>}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Detail", "Home", new { id = item.id })'">Детально</button>
+                                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
+                                        <button type="button" class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = item.id })'">Удалить</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+
+        <div class="summ">
+            <div class="container">
+                <div class="summ__row">
+                    <div class="summ__value">
+                        Сумма заработанная на данный момент: @ViewBag.sum рублей
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            
             <!-- Инициализация модального окна PeriodSelection -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeriodSelection" id="button-choise">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeriodSelection">
                 Выбор периода
             </button>
 

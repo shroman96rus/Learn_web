@@ -1,0 +1,15 @@
+﻿
+.summ {
+    /*border: 2px solid white;*/
+}
+
+.summ__row {
+    /*border: 2px solid white;*/
+    display: inline-flex;
+    padding: 20px;
+}
+
+.summ__value {
+    /*border: 2px solid white;*/
+    font-size: 20px;
+}
