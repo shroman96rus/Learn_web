@@ -10,12 +10,12 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update">
+        <form asp-action="Update" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
                 <label asp-for="dateOrder" class="control-label"></label>
-               
+
                 <input asp-for="dateOrder" class="form-control" />
                 <span asp-validation-for="dateOrder" class="text-danger"></span>
             </div>
@@ -48,6 +48,19 @@
                 <label asp-for="Translator" class="control-label"></label>
                 <input asp-for="Translator" class="form-control" />
                 <span asp-validation-for="Translator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    if (Model.path != null)
+                    {
+                        <input asp-for="path" class="hide" style="display:none" />
+                       
+                    }
+                        
+                        <input asp-for="path" type="file" name="uploadedFile" value="Загрузить документ" class="form-control-file" />
+                   
+                }
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
