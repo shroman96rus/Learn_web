@@ -11,7 +11,7 @@
     <a asp-action="Register" asp-controller="Account">Создать пользователя</a>
     <h2>Пользователи зарегистрированные в системе</h2>
 
-    <table class="table table-hover" id="table1" style="color:white;">
+    <table class="table table-hover" id="table1" style="color:white; overflow:auto;">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(i => i.nameUser)</th>
