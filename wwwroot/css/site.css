@@ -143,7 +143,7 @@ a {
 .nav__row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -169,6 +169,7 @@ a {
     font-size: 18px;
     padding: 0px 10px;
     color: white;
+    text-align:start;
 }
 
 .nav__logout {
@@ -176,6 +177,7 @@ a {
     font-family: 'Kurale', serif;
     font-size: 18px;
     padding: 10px 10px;
+    text-align: start
 }
 
     .nav__logout:hover{
@@ -186,6 +188,10 @@ a {
     .nav__logout:hover  a{
         color: black;
     }
+
+.scroll-table {
+    overflow-x: auto;
+}
 
     .footer {
         background: #f2f5ff;

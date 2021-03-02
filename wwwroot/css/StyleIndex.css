@@ -51,11 +51,12 @@ h1 {
     display: flex;
 }
 
+
+
 #table1 {
     font-family: 'Jura', sans-serif;
-    color:white;
-    overflow: auto;
-    
+    color: white;
+    /*overflow: auto;*/
 }
 
     #table1 tr:hover {

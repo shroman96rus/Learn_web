@@ -21,159 +21,162 @@
 
 
 
-    <h1>Система учета заказов</h1>
-    
-    
-    <div class="admin">
-        <div class="container">
-            <div class="admin__row">
-                <div class="admin__open">
-                    @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
-                    {
+<h1>Система учета заказов</h1>
 
-                        <a asp-controller="admin" asp-action="index">Открыть панель администратора </a>
-                    }
 
-                </div>
+<div class="admin">
+    <div class="container">
+        <div class="admin__row">
+            <div class="admin__open">
+                @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "Admin")
+                {
+
+                    <a asp-controller="admin" asp-action="index">Открыть панель администратора </a>
+                }
+
             </div>
         </div>
     </div>
+</div>
 
 
 
-        <div class="weather">
-            <div class="container">
-                <div class="weather__row">
-                    <div class="weather__text">
-                        <p>Погода в Екатеринбурге: <span>@ViewBag.temperature.Main.Temp</span></p>
-                        <p>Ощущается как: <span>@ViewBag.temperature.Main.feels_like</span></p>
-                        @*<p>@ViewBag.temperature.weather[0].main</p>*@
-                    </div>
-                    <div class="weather__image">
-                        @{
-                            switch (@ViewBag.temperature.weather[0].main)
-                            {
-                                case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
-                                case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
-                                case "Snow": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_snow.png" alt="Weather icon" height="70" />; break;
-                                default: break;
-                            }
-                        }
-                    </div>
-                </div>
+<div class="weather">
+    <div class="container">
+        <div class="weather__row">
+            <div class="weather__text">
+                <p>Погода в Екатеринбурге: <span>@ViewBag.temperature.Main.Temp</span></p>
+                <p>Ощущается как: <span>@ViewBag.temperature.Main.feels_like</span></p>
+                @*<p>@ViewBag.temperature.weather[0].main</p>*@
+            </div>
+            <div class="weather__image">
+                @{
+                    switch (@ViewBag.temperature.weather[0].main)
+                    {
+                        case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
+                        case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
+                        case "Snow": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_snow.png" alt="Weather icon" height="70" />; break;
+                        default: break;
+                    }
+                }
             </div>
         </div>
+    </div>
+</div>
 
-        
-        <div class="create">
-            <div class="container">
-                <div class="create__row">
-                    <div class="create__new-item">
-                        <a asp-controller="home" asp-action="Create">Создать запись</a>
-                    </div>
-                </div>
+
+<div class="create">
+    <div class="container">
+        <div class="create__row">
+            <div class="create__new-item">
+                <a asp-controller="home" asp-action="Create">Создать запись</a>
             </div>
         </div>
+    </div>
+</div>
 
-        
-        <div class="container">
-            <form class="form" asp-controller="home" asp-action="Index" id="search">
-                <div class="input-group mb-0">
-                    <button class="btn btn-primary" type="button" id="button-addon1">Поиск</button>
-                    <input type="text" class="form-control" placeholder="Поиск по данным клиента" name="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                </div>
-            </form>
+
+<div class="container">
+    <form class="form" asp-controller="home" asp-action="Index" id="search">
+        <div class="input-group mb-0">
+            <button class="btn btn-primary" type="button" id="button-addon1">Поиск</button>
+            <input type="text" class="form-control" placeholder="Поиск по данным клиента" name="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
         </div>
+    </form>
+</div>
 
-        <div class="container">
-                <table class="table table-hover" id="table1">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
-                            <th onclick="location.href='@Url.Action("Index", "Home", new { search = "orderBy"})'">@Html.DisplayNameFor(i => i.clientData)</th>
-                            <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
-                            <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
-                            <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
-                            <th>@Html.DisplayNameFor(i => i.Translator)</th>
-                            <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
-                            <th>Производимые операции</th>
-                        </tr>
+<div class="scroll-table">
+    <div class="container">
+        <table class="table table-hover" id="table1">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
+                    <th onclick="location.href='@Url.Action("Index", "Home", new { search = "orderBy"})'">@Html.DisplayNameFor(i => i.clientData)</th>
+                    <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
+                    <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
+                    <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
+                    <th>@Html.DisplayNameFor(i => i.Translator)</th>
+                    <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
+                    <th>Производимые операции</th>
+                </tr>
 
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
-                                <td>@item.clientData</td>
-                                <td>@item.originalLanguage</td>
-                                <td>@item.translateLanguage</td>
-                                <td>
-                                    @item.costOfWork <span>руб</span>
-                                </td>
-                                <td>@item.Translator</td>
-                                <td>
-                                    @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
-                                    {<span>руб</span>}
-                                </td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Detail", "Home", new { id = item.id })'">Детально</button>
-                                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
-                                        <button type="button" class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = item.id })'">Удалить</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-        </div>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
+                        <td>@item.clientData</td>
+                        <td>@item.originalLanguage</td>
+                        <td>@item.translateLanguage</td>
+                        <td>
+                            @item.costOfWork <span>руб</span>
+                        </td>
+                        <td>@item.Translator</td>
+                        <td>
+                            @item.costOfTranslationServices @if (item.costOfTranslationServices != null)
+                            {<span>руб</span>}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Detail", "Home", new { id = item.id })'">Детально</button>
+                                <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = item.id })'">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        <div class="summ">
-            <div class="container">
-                <div class="summ__row">
-                    <div class="summ__value">
-                        Сумма заработанная на данный момент: @ViewBag.sum рублей
-                    </div>
-                </div>
+<div class="summ">
+    <div class="container">
+        <div class="summ__row">
+            <div class="summ__value">
+                Сумма заработанная на данный момент: @ViewBag.sum рублей
             </div>
         </div>
+    </div>
+</div>
 
-            
-            <!-- Инициализация модального окна PeriodSelection -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeriodSelection">
-                Выбор периода
-            </button>
+<div class="container">
+    <!-- Инициализация модального окна PeriodSelection -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeriodSelection">
+        Выбор периода
+    </button>
+</div>
 
-            <!-- Modal -->
-            <div class="modal" id="PeriodSelection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Выбор периода</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Выберите период за который должна отображаться информация о заказах</p>
-                            <form asp-controller="home" asp-action="PeriodSelection" method="post">
-                                <div class="form-group">
-                                    <label for="formGroupExampleInput">Начало периода</label>
-                                    <input type="date" class="form-control" id="formGroupExampleInput" name="firstDate">
-
-                                    <label for="formGroupExampleInput2">Окончание периода</label>
-                                    <input type="date" class="form-control" id="formGroupExampleInput2" name="seccondDate">
-                                    <button type="submit" class="btn btn-primary mb-2">Отобразить</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
+<!-- Modal -->
+<div class="modal" id="PeriodSelection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Выбор периода</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <p>Выберите период за который должна отображаться информация о заказах</p>
+                <form asp-controller="home" asp-action="PeriodSelection" method="post">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Начало периода</label>
+                        <input type="date" class="form-control" id="formGroupExampleInput" name="firstDate">
+
+                        <label for="formGroupExampleInput2">Окончание периода</label>
+                        <input type="date" class="form-control" id="formGroupExampleInput2" name="seccondDate">
+                        <button type="submit" class="btn btn-primary mb-2">Отобразить</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
