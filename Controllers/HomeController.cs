@@ -98,13 +98,17 @@ namespace Learn_web.Controllers
                 return View(order);
             }
         }
-
+        
         //Первичное отображение представления Update
         public IActionResult Update(int id)
         {
             Order order = Orders.getOrder(id);
+            
+            
             return View(order);
         }
+
+        
 
         //Передача данных методом post в БД обновленых данных
         [HttpPost]
@@ -122,6 +126,8 @@ namespace Learn_web.Controllers
                     }
                     currentOrder.path = path;
                 }
+
+                
 
                 Orders.UpdateOrder(currentOrder);
 
@@ -197,20 +203,20 @@ namespace Learn_web.Controllers
         }
 
         //Удаление файла
-        private bool RemoveFileFromServer(string path)
+        private void RemoveFileFromServer(string path)
         {
             string fullPath = _appEnvironment.WebRootPath + path;
-            if (!System.IO.File.Exists(fullPath)) return false;
+            if (!System.IO.File.Exists(fullPath))
             try
             {
                 System.IO.File.Delete(fullPath);
-                return true;
+                
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
             }
-            return false;
+            
         }
 
 

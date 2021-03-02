@@ -1,4 +1,5 @@
 ﻿@model Learn_web.Models.Order
+@using Learn_web.Controllers
 
 @{
     ViewData["Title"] = "Обновить";
@@ -55,10 +56,12 @@
                     {
                         <input asp-for="path" class="hide" style="display:none" />
                        
-                    }
                         
-                        <input asp-for="path" type="file" name="uploadedFile" value="Загрузить документ" class="form-control-file" />
-                   
+
+                    }
+                    
+                    <input asp-for="path" type="file" name="uploadedFile" value="Загрузить документ" class="form-control-file" />
+
                 }
 
             </div>
