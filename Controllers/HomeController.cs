@@ -77,7 +77,7 @@ namespace Learn_web.Controllers
         {
             //проверка валидности объекта класса Order
             if (ModelState.IsValid)
-            {
+            {   //загрузка файла
                 if (uploadedFile != null)
                 {
                     string path = "/files/" + uploadedFile.FileName;
@@ -108,10 +108,21 @@ namespace Learn_web.Controllers
 
         //Передача данных методом post в БД обновленых данных
         [HttpPost]
-        public IActionResult Update(Order currentOrder)
+        public async Task<IActionResult> Update(Order currentOrder, IFormFile uploadedFile)
         {
             if (ModelState.IsValid)
             {
+                //загрузка файла
+                if (uploadedFile != null)
+                {
+                    string path = "/files/" + uploadedFile.FileName;
+                    using (FileStream fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+                    currentOrder.path = path;
+                }
+
                 Orders.UpdateOrder(currentOrder);
 
                 return RedirectToAction("Index");
@@ -152,7 +163,11 @@ namespace Learn_web.Controllers
         public IActionResult Delete(Order deleteOrder)
         {
             var test = Orders.getOrder(deleteOrder.id);
-            RemoveFileFromServer(test.path);
+            if (test.path != null)
+            {
+                RemoveFileFromServer(test.path);
+            }
+            
             Orders.deleteOrder(deleteOrder.id);
             
             return RedirectToAction("Index");

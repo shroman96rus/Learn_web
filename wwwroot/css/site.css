@@ -135,6 +135,20 @@ a {
     
 }
 
+#table1 {
+    font-family: 'Jura', sans-serif;
+    color: white;
+    /*overflow: auto;*/
+}
+
+    #table1 tr:hover {
+        background: -moz-linear-gradient(-45deg, rgba(110,119,116,0.2) 0%, rgba(110,119,116,0.34) 23%, rgba(10,14,10,0.58) 63%, rgba(10,8,9,0.8) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(110,119,116,0.2) 0%,rgba(110,119,116,0.34) 23%,rgba(10,14,10,0.58) 63%,rgba(10,8,9,0.8) 100%);
+        background: linear-gradient(135deg, rgba(110,119,116,0.2) 0%,rgba(110,119,116,0.34) 23%,rgba(10,14,10,0.58) 63%,rgba(10,8,9,0.8) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336e7774', endColorstr='#cc0a0809',GradientType=1 );
+        color: white
+    }
+
 .nav {
     background: #323233;
     padding: 20px 20px;
@@ -189,13 +203,19 @@ a {
         color: black;
     }
 
-.scroll-table {
-    overflow-x: auto;
+.table {
+    color: white;
 }
 
-    .footer {
-        background: #f2f5ff;
-    }
+.scroll-table {
+    overflow-x: auto;
+    color: white;
+}
+
+.footer {
+    background: #f2f5ff;
+    margin-top:30px;
+}
 
 .footer__row {
     display: flex;
