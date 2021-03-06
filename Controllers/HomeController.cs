@@ -180,8 +180,9 @@ namespace Learn_web.Controllers
         }
 
 
-        public IActionResult Privacy()
+        public IActionResult Statistic()
         {
+
             return View();
         }
 
