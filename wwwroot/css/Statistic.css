@@ -1,0 +1,67 @@
+﻿
+
+
+.count {
+    /*border: 2px solid white;*/
+    margin: 15px 0px;
+    padding: 20px 10px;
+}
+
+.count__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-stat {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    padding: 20px;
+    min-width: 20%;
+    min-height: 150px;
+    border-radius: 30px;
+}
+
+    .card-stat p {
+        padding: 5px;
+    }
+
+.count__title-card {
+    color: black;
+    background: white;
+    margin-bottom: 25px;
+    flex-basis: auto;
+    text-align: end;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 30px;
+}
+
+.card-stat span {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.sum {
+    /*border: 2px solid white;*/
+    margin: 15px 0px;
+    padding: 20px 10px;
+}
+
+.sum__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.sum__title-card {
+    color: black;
+    background: white;
+    margin-bottom: 25px;
+    flex-basis: auto;
+    text-align: end;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 30px;
+}

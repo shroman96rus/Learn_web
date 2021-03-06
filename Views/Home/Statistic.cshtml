@@ -1,6 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Статистика";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/Statistic.css" />
+</head>
+
 <h1>@ViewData["Title"]</h1>
 
+<div class="count">
+    <div class="container">
+        <div class="count__row">
+            <div class="count__daily card-stat">
+                <p class="count__title-card">День</p>
+                <p>Количество: <span>@ViewBag.countDay</span></p>
+            </div>
+            <div class="count__weekly card-stat">
+                <p class="count__title-card">Месяц</p>
+                <p>Количество: <span>@ViewBag.countMonth</span></p>
+            </div>
 
+            <div class="count__early card-stat">
+                <p class="count__title-card">Год</p>
+                <p>Количество: <span>@ViewBag.count</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sum">
+    <div class="container">
+        <div class="sum__row">
+            <div class="sum__daily card-stat">
+                <p class="sum__title-card">День</p>
+                <p>Сумма: <span>@ViewBag.sumDay</span></p>
+            </div>
+            <div class="sum__weekly card-stat">
+                <p class="sum__title-card">Месяц</p>
+                <p>Сумма: <span>@ViewBag.sumMonth</span></p>
+            </div>
+
+            <div class="sum__early card-stat">
+                <p class="sum__title-card">Год</p>
+                <p>Сумма: <span>@ViewBag.sum</span></p>
+            </div>
+        </div>
+    </div>
+</div>
