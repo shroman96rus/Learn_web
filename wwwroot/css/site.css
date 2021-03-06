@@ -76,12 +76,14 @@ h1, h2, h3, h4, h5, h6 {
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    background: #4c4c4c;
+   background: rgba(44, 44, 44, 0.93);
+    background-size: cover;
+    /*background: #4c4c4c;
     background: -moz-linear-gradient(-45deg, #4c4c4c 2%, #595959 8%, #474747 35%, #000000 74%, #1c1c1c 91%, #131313 100%);
     background: -webkit-linear-gradient(-45deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
     background: linear-gradient(135deg, #4c4c4c 2%,#595959 8%,#474747 35%,#000000 74%,#1c1c1c 91%,#131313 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=1 );
-    /*font-size: 40px;*/
+   */
 }
 
 h1 {
@@ -168,6 +170,7 @@ a {
     font-size: 30px;
     letter-spacing: 2px;
     padding: 0px 10px;
+    margin: 5px 0px;
 }
 
 .nav__statistic {
@@ -176,6 +179,7 @@ a {
     font-size: 18px;
     padding: 0px 10px;
     flex-grow: 1;
+    margin: 5px 0px;
 }
 
 .nav__user {
@@ -184,7 +188,8 @@ a {
     font-size: 18px;
     padding: 0px 10px;
     color: white;
-    text-align:start;
+    text-align: start;
+    margin: 5px 0px;
 }
 
 .nav__logout {
@@ -192,7 +197,8 @@ a {
     font-family: 'Kurale', serif;
     font-size: 18px;
     padding: 10px 10px;
-    text-align: start
+    text-align: start;
+    margin: 5px 0px;   
 }
 
     .nav__logout:hover{

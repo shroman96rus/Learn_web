@@ -182,15 +182,22 @@ namespace Learn_web.Controllers
 
         public IActionResult Statistic()
         {
-            ViewBag.sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+            
+            ViewBag.sum = Convert.ToDecimal(Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C");
             ViewBag.count = Orders.get().Select(i => i.id).Count();
-            ViewBag.sumDay = Orders.get().Where(i => i.dateOrder.Day == DateTime.Now.Day).Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+            ViewBag.sumDay = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder.Day == DateTime.Now.Day)
+                .Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C");
             ViewBag.countDay = Orders.get().Where(i => i.dateOrder.Day == DateTime.Now.Day).Count();
 
             DateTime firstDayMonth = DateTime.Now.AddDays(-DateTime.Now.Day + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute);
-            ViewBag.sumMonth = Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now).Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+            ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
+                .Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C");
             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now).Count();
-
+            //ViewBag.countMonth = Orders.get().Where(i => i.dateOrder >= )
+            DateTime firstDayWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute); //(int)DateTime.Now.DayOfWeek;
+            ViewBag.sumWeek = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now)
+                .Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C");
+            ViewBag.countWeek = Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now).Count();
 
 
             return View();
