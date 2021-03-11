@@ -6,6 +6,7 @@ h1 {
     text-align: center;
     color: white;
     margin: 20px auto;
+    
 }
 
 
@@ -39,12 +40,40 @@ h1 {
 .weather__image {
     /*border: 1px solid white;*/
     padding: 5px 0px 5px 0px;
-    align-items:start;
+    align-items: start;
+    animation-direction: reverse;
+    transition-duration: 0.5s;
+    
 }
 
-.create {
-    /*border: 2px solid white;*/
-    margin: 20px 0px 5px 0px;
+    .weather__image img {
+        max-width: 200px;
+        animation-name: weather;
+        transition-duration: 0.5s;
+    }
+
+        .weather__image img:hover {
+            transform: scale3d(1.5, 1.5, 1.5);
+            
+        }
+
+    .create {
+        /*border: 2px solid white;*/
+        margin: 20px 0px 5px 0px;
+    }
+
+@keyframes weather {
+    0% {
+        left: 0%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    100% {
+        left: 100%;
+    }
 }
 
 .create__row {

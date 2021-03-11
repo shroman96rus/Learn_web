@@ -176,7 +176,16 @@ a {
     letter-spacing: 2px;
     padding: 0px 10px;
     margin: 5px 0px;
+    transition-duration: 0.7s;
 }
+
+.nav__logo a{
+    
+}
+
+    .nav__logo:hover {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
 
 .nav__statistic {
     /*border: 1px solid white;*/
@@ -206,9 +215,13 @@ a {
     margin: 5px 0px;   
 }
 
-    .nav__logout:hover{
+    .nav__logout #logout{
+        transition-duration: 0.5s;
+    }
+
+    .nav__logout:hover {
         background: white;
-        
+
     }
 
     .nav__logout:hover  a{

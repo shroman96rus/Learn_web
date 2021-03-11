@@ -35,7 +35,7 @@
 }
 
     .card-stat:hover p.sum__title-card {
-        background: black;
+        background: grey;
         color: white;
     }
 
