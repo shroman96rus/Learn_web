@@ -182,7 +182,7 @@ namespace Learn_web.Controllers
         }
 
 
-        public IActionResult Statistic()
+        public IActionResult Statistic(string month)
         {
             CultureInfo culture = new CultureInfo("ru-Ru", false);
             ViewBag.sum = Convert.ToDecimal(Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C", culture);
@@ -194,10 +194,34 @@ namespace Learn_web.Controllers
             ViewBag.countDay = Orders.get().Where(i => i.dateOrder.Day == DateTime.Now.Day).Count();
 
             DateTime firstDayMonth = DateTime.Now.AddDays(-DateTime.Now.Day + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute);
-           
-            ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
-                .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
-                .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
+
+            if (month != null)
+            {
+                switch (month)
+                {
+                    case "Январь":
+                        ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
+                         .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
+                         .Sum(i => i.costOfTranslationServices)).ToString("C", culture); break;
+                    case "Февраль":
+                        ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.02.2021") && i.dateOrder <= Convert.ToDateTime("28.02.2021"))
+                         .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
+                         .Sum(i => i.costOfTranslationServices)).ToString("C", culture); break;
+                    case "Март":
+                        ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.03.2021") && i.dateOrder <= Convert.ToDateTime("31.03.2021"))
+                         .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
+                         .Sum(i => i.costOfTranslationServices)).ToString("C", culture); break;
+                    default: break;
+                }
+            }
+            else {
+                ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
+                    .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
+                    .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
+            }
+            
+
+            
             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now).Count();
             
 

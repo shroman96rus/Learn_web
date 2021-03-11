@@ -41,15 +41,19 @@ h1 {
     /*border: 1px solid white;*/
     padding: 5px 0px 5px 0px;
     align-items: start;
-    animation-direction: reverse;
+    
     transition-duration: 0.5s;
     
 }
 
     .weather__image img {
         max-width: 200px;
+        position: relative;
         animation-name: weather;
         transition-duration: 0.5s;
+        animation-duration:2s;
+        /*animation-delay: 1s;*/
+        animation-direction: reverse;
     }
 
         .weather__image img:hover {
@@ -64,15 +68,15 @@ h1 {
 
 @keyframes weather {
     0% {
-        left: 0%;
+        bottom: 0%;
     }
 
     50% {
-        left: 50%;
+        
     }
 
     100% {
-        left: 100%;
+        bottom: 500%;
     }
 }
 

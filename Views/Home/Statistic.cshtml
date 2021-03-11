@@ -49,7 +49,19 @@
                 <p>Сумма заказов: <span>@ViewBag.sumWeek</span></p>
             </div>
             <div class="sum__monthly card-stat">
-                <p class="sum__title-card">В месяц</p>
+                @*<p class="sum__title-card">В месяц</p>*@
+                <form class="form" asp-controller="home" asp-action="Statistic">
+                    <div class="dropdown">
+                        <button class="sum__title-card dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            В месяц
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="submit" name="month" value="Январь">Январь</button>
+                            <button class="dropdown-item" type="button" name="month" value="Февраль">Февраль</button>
+                            <button class="dropdown-item" type="button" name="month" value="Март">Март</button>
+                        </div>
+                    </div>
+                </form>
                 <p>Сумма заказов: <span>@ViewBag.sumMonth</span></p>
             </div>
             <div class="sum__early card-stat">
