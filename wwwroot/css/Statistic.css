@@ -45,16 +45,17 @@
         color: white;
     }*/
 
-    .count__title-card {
-        color: black;
-        background: white;
-        margin-bottom: 25px;
-        flex-basis: auto;
-        text-align: end;
-        font-size: 18px;
-        font-weight: 800;
-        border-radius: 30px;
-    }
+.count__title-card {
+    color: black;
+    background: white;
+    margin-bottom: 25px;
+    padding: 10px;
+    flex-basis: auto;
+    text-align: end;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 30px;
+}
 
 .card-stat span {
     font-size: 22px;
@@ -78,6 +79,7 @@
     color: black;
     background: white;
     margin-bottom: 25px;
+    padding: 10px;
     flex-basis: auto;
     text-align: end;
     font-size: 18px;

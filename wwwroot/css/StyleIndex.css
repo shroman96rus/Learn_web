@@ -14,11 +14,7 @@ h1 {
 .weather__row {
     display: inline-flex;
     flex-wrap: wrap;
-    /*background: #a9e4f7;
-    background: -moz-linear-gradient(-45deg, #a9e4f7 0%, #0fb4e7 100%);
-    background: -webkit-linear-gradient(-45deg, #a9e4f7 0%,#0fb4e7 100%);
-    background: linear-gradient(135deg, #a9e4f7 0%,#0fb4e7 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=1 );*/
+   
     margin: 20px 10px;
     padding: 20px 20px;
     /*border: 1px solid white;*/
@@ -85,11 +81,19 @@ h1 {
 }
 
 
-
-
-
     #search input {
         border: 2px solid black;
+    }
+
+.scroll-table {
+    letter-spacing: 1px;
+    font-weight:500;
+}
+
+    .scroll-table th {
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-weight: 800;
     }
 
 .summ {
@@ -122,4 +126,9 @@ h1 {
 }
 
 
-
+.pagination-item a {
+    color: white;
+    background: rgba(44, 44, 44, 0.93);
+    background-size: cover;
+    border: none;
+}

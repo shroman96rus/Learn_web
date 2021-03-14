@@ -1,9 +1,11 @@
 ﻿
 @using Learn_web.Models
 @using System.Security.Claims
+@using Learn_web.ViewModels;
 
 
-@model IEnumerable<Order>
+@*@model IEnumerable<Order>*@
+@model IndexViewModel
 
 
 @{
@@ -40,17 +42,20 @@
 </div>
 
 
+
 <div class="weather">
     <div class="container">
         <div class="weather__row">
             <div class="weather__text">
-                <p>Погода в Екатеринбурге: <span>@ViewBag.temperature.Main.Temp</span></p>
-                <p>Ощущается как: <span>@ViewBag.temperature.Main.feels_like</span></p>
-                @*<p>@ViewBag.temperature.weather[0].main</p>*@
+                <p>Погода в Екатеринбурге: <span> @Model.getWeather.Main.Temp</span></p>
+                <p>Ощущается как: <span>@Model.getWeather.Main.feels_like</span></p>
+                <p>Влажность: <span>@Model.getWeather.Main.humidity%</span></p>
+                <p>Минимальная температура: <span>@Model.getWeather.Main.temp_min</span></p>
+                <p>Максимальная температура: <span>@Model.getWeather.Main.temp_max</span></p>
             </div>
             <div class="weather__image">
                 @{
-                    switch (@ViewBag.temperature.weather[0].main)
+                    switch (@Model.getWeather.weather[0].main)
                     {
                         case "Clear": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_clear.png" alt="Weather icon" height="70" />; break;
                         case "Clouds": <img src="~/images/weather_icons_dovora_interactive/PNG/128/day_partial_cloud.png" alt="Weather icon" height="70" />; break;
@@ -89,19 +94,20 @@
         <table class="table table-hover" id="table1">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(i => i.dateOrder)</th>
-                    <th onclick="location.href='@Url.Action("Index", "Home", new { search = "orderBy"})'">@Html.DisplayNameFor(i => i.clientData)</th>
-                    <th>@Html.DisplayNameFor(i => i.originalLanguage)</th>
-                    <th>@Html.DisplayNameFor(i => i.translateLanguage)</th>
-                    <th>@Html.DisplayNameFor(i => i.costOfWork)</th>
-                    <th>@Html.DisplayNameFor(i => i.Translator)</th>
-                    <th>@Html.DisplayNameFor(i => i.costOfTranslationServices)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().clientData)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().clientData)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().originalLanguage)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().translateLanguage)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfWork)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().Translator)</th>
+                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfTranslationServices)</th>
                     <th>Производимые операции</th>
                 </tr>
 
             </thead>
             <tbody>
-                @foreach (var item in Model)
+
+                @foreach (var item in Model.Orders)
                 {
                     <tr>
                         <td>@item.dateOrder.ToString("dd.MM.yyyy")</td>
@@ -130,11 +136,48 @@
     </div>
 </div>
 
+<div class="pagination-item">
+    <div class="container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    @if (Model.pageViewModel.HasPreviousPage)
+                    {
+                        <a asp-action="Index"
+                           asp-route-page="@(Model.pageViewModel.PageNumber - 1)" class="page-link"  aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Назад</span>
+                        </a>
+                    }
+                </li>
+                @for (int i = 1; i <= Model.pageViewModel.TotalPages; i++)
+                {
+                    <li class="page-item">
+                        <a asp-action="Index"
+                           asp-route-page="@i" class="page-link">@i</a>
+                    </li>
+                }
+                <li class="page-item">
+                    @if (Model.pageViewModel.HasNextPage)
+                    {
+                        <a asp-action="Index"
+                           asp-route-page="@(Model.pageViewModel.PageNumber + 1)" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Вперед</span>
+                        </a>
+                    }
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
 <div class="summ">
     <div class="container">
         <div class="summ__row">
             <div class="summ__value">
-                Сумма заработанная на данный момент: @ViewBag.sum рублей
+                Сумма заработанная на данный момент: @Model.sum рублей
             </div>
         </div>
     </div>
@@ -146,6 +189,8 @@
         Выбор периода
     </button>
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal" id="PeriodSelection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

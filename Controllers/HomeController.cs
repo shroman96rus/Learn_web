@@ -13,6 +13,9 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using System.Globalization;
+using System.Collections.Generic;
+using Learn_web.Models.SortPageFilter;
+using Learn_web.ViewModels;
 
 namespace Learn_web.Controllers
 {
@@ -38,33 +41,37 @@ namespace Learn_web.Controllers
 
         //отображение начальной страницы
         
-        public IActionResult Index(string search)
+        public IActionResult Index(string search, int page = 1)
         {
-            
-            var model = from m in Orders.get() select m;
+           
+           var model = Orders.get();
            
             if (!String.IsNullOrEmpty(search))
             {
-                if (search == "orderBy")
-                {
-                    //count++;
-                  model = model.OrderBy(i => i.clientData);
-                    
-                }
-                else
-                {
-                    model = model.Where(i => i.clientData.Contains(search));
-                }
-                
+                  model = model.Where(i => i.clientData.Contains(search));
             }
-            
-            ViewBag.temperature = Weather.GetWeather();
-            
-            
-            ViewBag.sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices);
+
+            //Блок отвечающий за пагинацию
+            var count = model.Count();
+
+            int pageSize = 20;
 
             
-            return View(model);
+            model = model.Skip((page - 1) * pageSize).Take(pageSize);
+
+            
+            IndexViewModel viewModel = new IndexViewModel()
+            {
+                sum = Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices),
+
+                pageViewModel = new(count, page, pageSize),
+
+                Orders = model
+
+
+            };
+
+            return View(viewModel);
         }
 
         //первичное отображение страницы Create
@@ -224,13 +231,10 @@ namespace Learn_web.Controllers
             
             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now).Count();
             
-
-
             DateTime firstDayWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute);
             ViewBag.sumWeek = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now).Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now)
                 .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
             ViewBag.countWeek = Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now).Count();
-
 
             return View();
         }
