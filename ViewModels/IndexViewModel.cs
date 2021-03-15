@@ -12,11 +12,11 @@ namespace Learn_web.ViewModels
         public IEnumerable<Order> Orders { get; set; }
         public PageViewModel pageViewModel { get; set; }
 
+        public SortViewModel SortViewModel { get; set; }
+
         public double? sum { get; set; }
 
         public WeatherResponse getWeather = Weather.GetWeather();
-
-
 
     }
 }

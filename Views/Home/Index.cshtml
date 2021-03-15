@@ -94,13 +94,13 @@
         <table class="table table-hover" id="table1">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().clientData)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().clientData)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().originalLanguage)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().translateLanguage)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfWork)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().Translator)</th>
-                    <th>@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfTranslationServices)</th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.dateOrderSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().dateOrder)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.clientDataSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().clientData)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.originalLanguageSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().originalLanguage)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.translateLanguageSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().translateLanguage)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.costOfWorkSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfWork)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.TranslatorSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().Translator)</a></th>
+                    <th><a asp-action="Index" asp-route-sortOrder="@Model.SortViewModel.costOfTranslationServicesSort">@Html.DisplayNameFor(i => i.Orders.FirstOrDefault().costOfTranslationServices)</a></th>
                     <th>Производимые операции</th>
                 </tr>
 
@@ -144,7 +144,7 @@
                     @if (Model.pageViewModel.HasPreviousPage)
                     {
                         <a asp-action="Index"
-                           asp-route-page="@(Model.pageViewModel.PageNumber - 1)" class="page-link"  aria-label="Previous">
+                           asp-route-page="@(Model.pageViewModel.PageNumber - 1)" asp-route-sortOrder="@Model.SortViewModel.current" class="page-link"  aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Назад</span>
                         </a>
@@ -154,14 +154,14 @@
                 {
                     <li class="page-item">
                         <a asp-action="Index"
-                           asp-route-page="@i" class="page-link">@i</a>
+                           asp-route-page="@i" asp-route-sortOrder="@Model.SortViewModel.current" class="page-link">@i</a>
                     </li>
                 }
                 <li class="page-item">
                     @if (Model.pageViewModel.HasNextPage)
                     {
                         <a asp-action="Index"
-                           asp-route-page="@(Model.pageViewModel.PageNumber + 1)" class="page-link" aria-label="Next">
+                           asp-route-page="@(Model.pageViewModel.PageNumber + 1)" asp-route-sortOrder="@Model.SortViewModel.current" class="page-link" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Вперед</span>
                         </a>
