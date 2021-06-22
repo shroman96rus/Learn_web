@@ -124,6 +124,9 @@
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+
+                                <a onclick="showInPopup('@Url.Action("PatritialDetail", "Home", new { id = item.id }, Context.Request.Scheme)', 'Test message')"
+                                   class="btn btn-outline-info">Detail</a>
                                 <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Detail", "Home", new { id = item.id })'">Детально</button>
                                 <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
                                 <button type="button" class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = item.id })'">Удалить</button>
@@ -144,7 +147,7 @@
                     @if (Model.pageViewModel.HasPreviousPage)
                     {
                         <a asp-action="Index"
-                           asp-route-page="@(Model.pageViewModel.PageNumber - 1)" asp-route-sortOrder="@Model.SortViewModel.current" class="page-link"  aria-label="Previous">
+                           asp-route-page="@(Model.pageViewModel.PageNumber - 1)" asp-route-sortOrder="@Model.SortViewModel.current" class="page-link" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Назад</span>
                         </a>
@@ -192,7 +195,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal выбор периода -->
 <div class="modal" id="PeriodSelection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -221,6 +224,13 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 
