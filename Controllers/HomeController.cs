@@ -41,7 +41,7 @@ namespace Learn_web.Controllers
 
         //отображение начальной страницы
         
-        public IActionResult Index(string search, int page = 1, SortState sortOrder = SortState.dateOrderAsc)
+        public IActionResult Index(string search, int page = 1, SortState sortOrder = SortState.dateOrderDesc)
         {
            //получение данных из БД
            var model = Orders.get();
@@ -203,7 +203,7 @@ namespace Learn_web.Controllers
 
         }
 
-        public IActionResult PatritialDetail(int id = 25)
+        public IActionResult PatritialDetail(int id)
         {
            
                 Order detailOrder = Orders.getOrder(id);
@@ -219,6 +219,14 @@ namespace Learn_web.Controllers
            Order deleteOrder = Orders.getOrder(id);
            
             return View(deleteOrder);
+        }
+
+        //Версия метода delete для млдального окна
+        public IActionResult PartialDelete(int id)
+        {
+            Order deleteOrder = Orders.getOrder(id);
+
+            return PartialView(deleteOrder);
         }
 
         //метод страницы Delete отвечающий за отображение страницы подтверждения и удаление записи из базы данных

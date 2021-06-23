@@ -1,0 +1,56 @@
+﻿@model Learn_web.Models.Order
+
+<div>
+    <hr />
+    <dl >
+        <dt >
+            @Html.DisplayNameFor(model => model.dateOrder)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.dateOrder)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.clientData)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.clientData)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.originalLanguage)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.originalLanguage)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.translateLanguage)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.translateLanguage)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.costOfWork)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.costOfWork)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.costOfTranslationServices)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.costOfTranslationServices)
+        </dd>
+        <dt >
+            @Html.DisplayNameFor(model => model.Translator)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.Translator)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+
+</div>
