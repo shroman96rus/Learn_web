@@ -19,6 +19,7 @@ using Learn_web.ViewModels;
 
 namespace Learn_web.Controllers
 {
+    
     [Authorize(Policy = "User")]
     public class HomeController : Controller
     {
@@ -245,7 +246,8 @@ namespace Learn_web.Controllers
         }
 
 
-        public IActionResult Statistic(string month)
+        
+        public IActionResult Statistic(int? month)
         {
             CultureInfo culture = new CultureInfo("ru-Ru", false);
             ViewBag.sum = Convert.ToDecimal(Orders.get().Sum(i => i.costOfWork) - Orders.get().Sum(i => i.costOfTranslationServices)).ToString("C", culture);
@@ -261,69 +263,69 @@ namespace Learn_web.Controllers
 
             DateTime firstDayMonth = DateTime.Now.AddDays(-DateTime.Now.Day + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute);
 
-            if (!String.IsNullOrEmpty(month))
-            {
+            //if (!String.IsNullOrEmpty(month))
+            //{
 
                 if (month != null)
                 {
                     switch (month)
                     {
-                        case "Январь":
+                        case 1:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.01.2021") && i.dateOrder <= Convert.ToDateTime("31.01.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 1).Count(); break;
-                        case "Февраль":
+                        case 2:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.02.2021") && i.dateOrder <= Convert.ToDateTime("28.02.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.02.2021") && i.dateOrder <= Convert.ToDateTime("28.02.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 2).Count(); break;
-                        case "Март":
+                        case 3:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.03.2021") && i.dateOrder <= Convert.ToDateTime("31.03.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.03.2021") && i.dateOrder <= Convert.ToDateTime("31.03.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 3).Count(); break;
-                        case "Апрель":
+                        case 4:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.04.2021") && i.dateOrder <= Convert.ToDateTime("30.04.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.04.2021") && i.dateOrder <= Convert.ToDateTime("30.04.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 4).Count(); break;
-                        case "Май":
+                        case 5:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.05.2021") && i.dateOrder <= Convert.ToDateTime("31.05.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.05.2021") && i.dateOrder <= Convert.ToDateTime("31.05.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 5).Count(); break;
-                        case "Июнь":
+                        case 6:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.06.2021") && i.dateOrder <= Convert.ToDateTime("30.06.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.06.2021") && i.dateOrder <= Convert.ToDateTime("30.06.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 6).Count(); break;
-                        case "Июль":
+                        case 7:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.07.2021") && i.dateOrder <= Convert.ToDateTime("31.07.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.07.2021") && i.dateOrder <= Convert.ToDateTime("31.07.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 7).Count(); break;
-                        case "Август":
+                        case 8:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.08.2021") && i.dateOrder <= Convert.ToDateTime("31.08.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.08.2021") && i.dateOrder <= Convert.ToDateTime("31.08.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 8).Count(); break;
-                        case "Сентябрь":
+                        case 9:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.09.2021") && i.dateOrder <= Convert.ToDateTime("30.09.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.09.2021") && i.dateOrder <= Convert.ToDateTime("30.09.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 9).Count(); break;
-                        case "Октябрь":
+                        case 10:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.10.2021") && i.dateOrder <= Convert.ToDateTime("31.10.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.10.2021") && i.dateOrder <= Convert.ToDateTime("31.10.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 10).Count(); break;
-                        case "Ноябрь":
+                        case 11:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.11.2021") && i.dateOrder <= Convert.ToDateTime("30.11.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.11.2021") && i.dateOrder <= Convert.ToDateTime("30.11.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                             ViewBag.countMonth = Orders.get().Where(i => i.dateOrder.Month == 11).Count(); break;
-                        case "Декабрь":
+                        case 12:
                             ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.12.2021") && i.dateOrder <= Convert.ToDateTime("31.12.2021"))
                              .Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= Convert.ToDateTime("01.12.2021") && i.dateOrder <= Convert.ToDateTime("31.12.2021"))
                              .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
@@ -331,7 +333,7 @@ namespace Learn_web.Controllers
                         default: break;
                     }
                 }
-            }
+            //}
             else
             {
                 ViewBag.sumMonth = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now)
@@ -339,7 +341,7 @@ namespace Learn_web.Controllers
                     .Sum(i => i.costOfTranslationServices)).ToString("C", culture);
                 ViewBag.countMonth = Orders.get().Where(i => i.dateOrder >= firstDayMonth && i.dateOrder <= DateTime.Now).Count();
             }
-            
+
 
             DateTime firstDayWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + 1).AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute);
             ViewBag.sumWeek = Convert.ToDecimal(Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now).Sum(i => i.costOfWork) - Orders.get().Where(i => i.dateOrder >= firstDayWeek && i.dateOrder <= DateTime.Now)
