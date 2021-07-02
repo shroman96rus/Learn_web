@@ -19,6 +19,7 @@ using Learn_web.ViewModels;
 
 namespace Learn_web.Controllers
 {
+    
     [Authorize(Policy = "User")]
     public class HomeController : Controller
     {
