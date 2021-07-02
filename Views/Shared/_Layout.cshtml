@@ -27,7 +27,7 @@
                             <a asp-controller="Home" asp-action="Index">Бюро переводов</a>
                         </div>
                         <div class="nav__statistic">
-                            <a asp-area="" asp-controller="Home" asp-action="Statistic">Статистика</a>
+                            <a asp-area="" asp-controller="Statistic" asp-action="Index">Статистика</a>
                         </div>
 
                         <div class="nav__user">Добро пожаловать: @User.Identity.Name</div>
@@ -56,10 +56,11 @@
     </footer>
 
 
-   
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/Statistic.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

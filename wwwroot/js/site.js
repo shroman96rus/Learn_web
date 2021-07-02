@@ -13,4 +13,5 @@ showInPopup = (url, title) => {
 
         }
     })
-}
+};
+

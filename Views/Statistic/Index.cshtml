@@ -2,8 +2,13 @@
     ViewData["Title"] = "Статистика";
 }
 
+
+
+
+
 <head>
     <link rel="stylesheet" href="~/css/Statistic.css" />
+    
 </head>
 
 <h1>@ViewData["Title"]</h1>
@@ -35,7 +40,7 @@
     </div>
 </div>
 
-<h2>Заработанные деньги</h2>
+<h2>Заработанные деньги <span id="changeMonth">@ViewBag.testmonth</span></h2>
 
 <div class="sum">
     <div class="container">
@@ -50,33 +55,52 @@
             </div>
             <div class="sum__monthly card-stat">
                 @*<p class="sum__title-card">В месяц</p>*@
-                <form class="form" asp-controller="home" asp-action="Statistic">
+                
                     <div class="dropdown">
+
                         <button class="sum__title-card dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             В месяц
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="submit" asp-route-month="Январь">Январь</button>
-                            <button class="dropdown-item" type="submit" name="month" value="Февраль">Февраль</button>
-                            <button class="dropdown-item" type="submit" name="month" value="Март">Март</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Апрель">Апрель</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Январь">Май</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Май">Июнь</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Май">Май</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Август">Август</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Август">Август</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Август">Август</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Январь">Ноябрь</button>
-                            <button class="dropdown-item" type="submit" asp-route-month="Январь">Декабрь</button>
+                        <div class="dropdown-menu change-month" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(1);" >Январь</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(2);">Февраль</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(3);">Март</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(4);">Апрель</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(5);">Май</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(6);">Июнь</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(7);">Май</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(8);">Август</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(9);">Август</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(10);">Август</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(11);">Ноябрь</button>
+                            <button class="dropdown-item" type="submit"  onclick="getInfo(12);">Декабрь</button>
                         </div>
                     </div>
-                </form>
-                <p>Сумма заказов: <span>@ViewBag.sumMonth</span></p>
+                
+                <p >Сумма заказов: <span id="result"></span></p>
             </div>
             <div class="sum__early card-stat">
                 <p class="sum__title-card">В год</p>
                 <p>Сумма заказов: <span>@ViewBag.sum</span></p>
+                
             </div>
         </div>
     </div>
 </div>
+
+<div class="statistic-grafic">
+    <div class="container">
+        <h2>Статистика заработанных денег</h2>
+        <div class="statistic-grafic__month">
+            <div class="statistic-grafic__title-graf"></div>
+            <div class="statistic-grafic__`````````````body" id="testing" >
+                <canvas id="myChart" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0/dist/chart.min.js"></script>
+

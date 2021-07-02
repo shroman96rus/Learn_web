@@ -73,7 +73,7 @@
     <div class="container">
         <div class="create__row">
             <div class="create__new-item">
-                <a asp-controller="home" asp-action="Create">Создать запись</a>
+                <a href="#" onclick="showInPopup('@Url.Action("PartialCreate", "Home")', 'Создать запись')">Создать запись</a>
             </div>
         </div>
     </div>
@@ -124,15 +124,6 @@
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-
-                                @*<button onclick="showInPopup('@Url.Action("PatritialDetail", "Home", new { id = item.id }, Context.Request.Scheme)', 'Детально')"
-                                        class="btn btn-outline-info" type="submit">
-                                    Детально modal
-                                </button>
-                                <button onclick="showInPopup('@Url.Action("PartialDelete", "Home", new { id = item.id }, Context.Request.Scheme)', 'Вы уверены что хотите удалить эту запись?')"
-                                        class="btn btn-outline-info" type="submit">
-                                    Delete Modal
-                                </button>*@
                                 <button type="button" class="btn btn-outline-info" onclick="showInPopup('@Url.Action("PatritialDetail", "Home", new { id = item.id }, Context.Request.Scheme)', 'Детально')">Детально</button>
                                 <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Update", "Home", new { id = item.id })'">Обновить</button>
                                 <button type="button" class="btn btn-outline-danger" onclick="showInPopup('@Url.Action("PartialDelete", "Home", new { id = item.id }, Context.Request.Scheme)', 'Вы уверены что хотите удалить эту запись?')">Удалить</button>
@@ -245,6 +236,22 @@
             </div>
             <div class="modal-body">
                 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modDialogCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
             </div>
         </div>
     </div>

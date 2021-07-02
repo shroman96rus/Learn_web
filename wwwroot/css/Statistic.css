@@ -86,3 +86,15 @@
     font-weight: 800;
     border-radius: 30px;
 }
+
+.statistic-grafic__month {
+    /*border: 2px solid white;*/
+    max-width: 800px;
+    max-height: 400px;
+}
+
+#myChart{
+    /*color: white;*/
+   /* max-width: 600px;
+    max-height: 300px;*/
+}
