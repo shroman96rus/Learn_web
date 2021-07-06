@@ -1,4 +1,6 @@
 ﻿using Learn_web.Interfaces;
+using Learn_web.Models;
+using Learn_web.Models.Grafic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -64,11 +66,36 @@ namespace Learn_web.Controllers
         {
             //var countMonth = Orders.get().Where(i => i.dateOrder.Month == month).Select( i => i.costOfWork);
 
-            var countMonth = from item in Orders.get() where item.dateOrder.Month == month select new { item.dateOrder, item.costOfWork };
+            var allOrder = Orders.get().Where(i => i.dateOrder.Month == month).ToArray();
 
-            
-            
-            ViewBag.testmonth = month;
+            List<GraficViewModel> monthSort = new List<GraficViewModel> { new GraficViewModel 
+            { 
+                summWork = allOrder[0].costOfWork, 
+                summDate = allOrder[0].dateOrder.ToString("dd.MM.yyyy")}  
+            };
+
+            for (int i = 1, j = 0; i < allOrder.Length; i++, j++)
+            {
+                if (monthSort[j].summDate == allOrder[i].dateOrder.ToString("dd.MM.yyyy"))
+                {
+                    monthSort[j].summWork = (monthSort[j].summWork + allOrder[i].costOfWork); j--;
+                }
+                else
+                {
+                    monthSort.Add(new GraficViewModel
+                    {
+                        summWork = allOrder[i].costOfWork,
+                        summDate = allOrder[i].dateOrder.ToString("dd.MM.yyyy")
+                    });
+                }
+            }
+
+            //var countMonth = from item in Orders.get() where item.dateOrder.Month == month select new { item.dateOrder, item.costOfWork };
+
+            var countMonth = from item in monthSort select new { item.summDate, item.summWork };
+
+
+            ViewBag.testmonth = "Январь";
 
             return Json(countMonth);
         }

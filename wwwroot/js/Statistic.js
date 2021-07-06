@@ -5,13 +5,7 @@ function getInfo(id) {
         .done(function (data) {
 
             
-            //console.log(count);
-
-            //var result_str = "";
-            //for (var i = 0; i < count; i++) {
-            //    console.log(data[i]);
-            //    result_str = result_str + " " + data[i];
-            //}
+           
             $("#result").html(data);
             console.log(data);
         });
@@ -21,50 +15,46 @@ function getInfo(id) {
 
             console.log(data);
 
-            var count = data.length;
-
-            var arr1 = [];
-
-            var arrColl = [];
-
-            var arrDate = [];
-
-            arrDate[0] = data[0].costOfWork;
-            
-            for (var i = 1; i < count; i++) {
-                if (data[i - 1].dateOrder == data[i])
-                {
-                   arrDate.push(data[i].costOfWork + data[i-1].costOfWork);
-                }
-                else
-                {
-                    arrDate.push(data[i].costOfWork);
-                }
-                
-            }
-
-          
-            console.log(arrDate);
-            
-            
-
-            var ctx = document.getElementById('myChart').getContext('2d');
-
-            var date = document.getElementById('#changeMonth').innerHTML;
-
             if (window.myChart instanceof Chart)
             {
                 window.myChart.destroy();
             }
 
-            console.log(date);
 
+
+            var count = data.length;
+
+            var arrColl = [];
+
+            var arrDate = [];
+
+            for (var i = 0; i < count; i++) {
+                
+                arrDate.push(data[i].summWork);
+            }
+
+            for (var i = 0; i < count; i++) {
+                arrColl.push(data[i].summDate);
+            }
+          
+            console.log(arrDate);
+            console.log(arrDate);
+            
+            var ctx = document.getElementById('myChart').getContext('2d');
+
+            const currentMonth = document.getElementById('statistic-grafic-month').value;
+
+            console.log(currentMonth);
+
+            //var date = document.getElementById('#changeMonth').innerHTML;
+
+            
             window.myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: '',
+                    labels: arrColl,
                     datasets: [{
-                        label: 'График заработка за месяц',
+                        label: 'График заработка за месяц ' + id,
                         
                         backgroundColor: [
                             '#00FF00',

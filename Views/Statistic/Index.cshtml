@@ -54,8 +54,7 @@
                 <p>Сумма заказов: <span>@ViewBag.sumWeek</span></p>
             </div>
             <div class="sum__monthly card-stat">
-                @*<p class="sum__title-card">В месяц</p>*@
-                
+              
                     <div class="dropdown">
 
                         <button class="sum__title-card dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,7 +92,8 @@
         <h2>Статистика заработанных денег</h2>
         <div class="statistic-grafic__month">
             <div class="statistic-grafic__title-graf"></div>
-            <div class="statistic-grafic__`````````````body" id="testing" >
+            <div class="statistic-grafic__body" id="testing" >
+                <input type="hidden" id="statistic-grafic-month" value="@ViewBag.testmonth" />
                 <canvas id="myChart" ></canvas>
             </div>
         </div>
