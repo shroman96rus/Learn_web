@@ -68,36 +68,38 @@ namespace Learn_web.Controllers
 
             var allOrder = Orders.get().Where(i => i.dateOrder.Month == month).ToArray();
 
-            List<GraficViewModel> monthSort = new List<GraficViewModel> { new GraficViewModel 
-            { 
-                summWork = allOrder[0].costOfWork, 
-                summDate = allOrder[0].dateOrder.ToString("dd.MM.yyyy")}  
+            if (allOrder.Length != 0)
+            {
+                List<GraficViewModel> monthSort = new List<GraficViewModel> { new GraficViewModel
+                {
+                summWork = allOrder[0].costOfWork,
+                summDate = allOrder[0].dateOrder.ToString("dd.MM.yyyy")
+                }
             };
 
-            for (int i = 1, j = 0; i < allOrder.Length; i++, j++)
-            {
-                if (monthSort[j].summDate == allOrder[i].dateOrder.ToString("dd.MM.yyyy"))
+
+                for (int i = 1, j = 0; i < allOrder.Length; i++, j++)
                 {
-                    monthSort[j].summWork = (monthSort[j].summWork + allOrder[i].costOfWork); j--;
-                }
-                else
-                {
-                    monthSort.Add(new GraficViewModel
+                    if (monthSort[j].summDate == allOrder[i].dateOrder.ToString("dd.MM.yyyy"))
                     {
-                        summWork = allOrder[i].costOfWork,
-                        summDate = allOrder[i].dateOrder.ToString("dd.MM.yyyy")
-                    });
+                        monthSort[j].summWork = (monthSort[j].summWork + allOrder[i].costOfWork); j--;
+                    }
+                    else
+                    {
+                        monthSort.Add(new GraficViewModel
+                        {
+                            summWork = allOrder[i].costOfWork,
+                            summDate = allOrder[i].dateOrder.ToString("dd.MM.yyyy")
+                        });
+                    }
                 }
+                var countMonth = from item in monthSort select new { item.summDate, item.summWork };
+
+                return Json(countMonth);
             }
+            else return Json("Not data");
+            
 
-            //var countMonth = from item in Orders.get() where item.dateOrder.Month == month select new { item.dateOrder, item.costOfWork };
-
-            var countMonth = from item in monthSort select new { item.summDate, item.summWork };
-
-
-            ViewBag.testmonth = "Январь";
-
-            return Json(countMonth);
         }
     }
 }

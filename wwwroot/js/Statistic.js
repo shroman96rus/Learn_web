@@ -8,7 +8,7 @@ function getInfo(id) {
            
             $("#result").html(data);
             console.log(data);
-        });
+    });
 
     $.post("/Statistic/GrafMonth", { Month: id })
         .done(function (data) {
@@ -20,57 +20,60 @@ function getInfo(id) {
                 window.myChart.destroy();
             }
 
+            if (data != "Not data")
+            {
+                var count = data.length;
 
+                var arrColl = [];
 
-            var count = data.length;
+                var arrDate = [];
 
-            var arrColl = [];
-
-            var arrDate = [];
-
-            for (var i = 0; i < count; i++) {
+                for (var i = 0; i < count; i++) {
                 
-                arrDate.push(data[i].summWork);
-            }
+                    arrDate.push(data[i].summWork);
+                }
 
-            for (var i = 0; i < count; i++) {
-                arrColl.push(data[i].summDate);
-            }
+                for (var i = 0; i < count; i++) {
+                    arrColl.push(data[i].summDate);
+                }
           
-            console.log(arrDate);
-            console.log(arrDate);
+                console.log(arrDate);
+                console.log(arrDate);
             
-            var ctx = document.getElementById('myChart').getContext('2d');
+                var ctx = document.getElementById('myChart').getContext('2d');
 
-            const currentMonth = document.getElementById('statistic-grafic-month').value;
+                const currentMonth = document.getElementById('statistic-grafic-month').value;
 
-            console.log(currentMonth);
+                console.log(currentMonth);
 
-            //var date = document.getElementById('#changeMonth').innerHTML;
+                //var date = document.getElementById('#changeMonth').innerHTML;
 
             
-            window.myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: arrColl,
-                    datasets: [{
-                        label: 'График заработка за месяц ' + id,
+                window.myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: arrColl,
+                        datasets: [{
+                            label: 'График заработка за месяц ' + id,
                         
-                        backgroundColor: [
-                            '#00FF00',
+                            backgroundColor: [
+                                '#00FF00',
 
-                        ],
-                        borderColor: [
+                            ],
+                            borderColor: [
 
-                            '#FF00FF'
-                        ],
-                        data: arrDate,
-                    }],
-                },
+                                '#FF00FF'
+                            ],
+                            data: arrDate,
+                        }],
+                    },
                 
-            });
+                });
 
-        });
+            };
+
+         });
+        
 
    
 }
